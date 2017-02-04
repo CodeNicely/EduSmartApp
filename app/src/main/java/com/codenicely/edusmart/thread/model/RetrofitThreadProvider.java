@@ -78,11 +78,15 @@ public class RetrofitThreadProvider implements ThreadProvider {
             public void onResponse(Call<CreateThreadData> call, Response<CreateThreadData> response) {
 
 
+                onThreadCreated.onSuccess(response.body());
+
             }
 
             @Override
             public void onFailure(Call<CreateThreadData> call, Throwable t) {
 
+                t.printStackTrace();
+                onThreadCreated.onFailed("Failed to conect to servers");
             }
         });
 

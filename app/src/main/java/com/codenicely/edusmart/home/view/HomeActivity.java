@@ -100,6 +100,7 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
         if (id == R.id.nav_home) {
             // Handle the camera action
+            addFragment(new HomeFragment(),"HomeFragment");
         } else if (id == R.id.nav_address) {
 
             addFragment(new UploadFragment(), "Upload");
