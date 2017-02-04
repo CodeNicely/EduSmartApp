@@ -16,6 +16,5 @@ public interface RequestLogin {
     @FormUrlEncoded
     @POST(Urls.SUB_URL_LOGIN)
     Call<LoginDataResponse> requestLogin(@Field("roll_no") String user_id,
-                                         @Field("password") String password,
                                          @Field("login_type") int login_type);
 }

@@ -5,5 +5,5 @@ package com.codenicely.edusmart.login.presenter;
  */
 
 public interface LoginPresenter {
-    void getLoginData(String user_id, String password,int login_type);
+    void getLoginData(String user_id,int login_type);
 }

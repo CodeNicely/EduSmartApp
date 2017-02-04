@@ -7,5 +7,5 @@ import com.codenicely.edusmart.login.LoginCallback;
  */
 
 public interface LoginHelper {
-    void loginData(String user_id, String password,int login_type, LoginCallback loginCallback);
+    void loginData(String user_id,int login_type, LoginCallback loginCallback);
 }

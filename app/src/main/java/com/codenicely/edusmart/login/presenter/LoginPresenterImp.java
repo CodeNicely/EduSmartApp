@@ -22,9 +22,9 @@ public class LoginPresenterImp implements LoginPresenter {
 
 
     @Override
-    public void getLoginData(String user_id, String password,int login_type) {
+    public void getLoginData(String user_id,int login_type) {
         login.showProgressBar(true);
-        loginHelper.loginData(user_id, password,login_type, new LoginCallback() {
+        loginHelper.loginData(user_id,login_type, new LoginCallback() {
             @Override
             public void onLoginSuccess(LoginDataResponse loginResponse) {
                 if(loginResponse.isSuccess()) {

@@ -11,18 +11,20 @@ public class HomeListDataDetails {
     private String deadline;
     private String file_url;
     private String timestamp;
+    private int card_type;
     private String teacher_name;
     private String subject_name;
     private int count;
 
     public HomeListDataDetails(String topic_name,String topic_description,int type,String deadline,
-                               String file_url,String timestamp,String teacher_name,String subject_name )
+                               String file_url,String timestamp,String teacher_name,String subject_name,int card_type )
     {
         this.description =topic_description;
         this.title =topic_name;
         this.file_type=type;
         this.deadline=deadline;
         this.file_url=file_url;
+        this.card_type=card_type;
         this.timestamp=timestamp;
         this.teacher_name=teacher_name;
         this.subject_name=subject_name;
@@ -100,5 +102,13 @@ public class HomeListDataDetails {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public int getCard_type() {
+        return card_type;
+    }
+
+    public void setCard_type(int card_type) {
+        this.card_type = card_type;
     }
 }

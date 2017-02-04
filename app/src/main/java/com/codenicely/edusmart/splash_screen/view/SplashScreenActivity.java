@@ -151,11 +151,11 @@ public class SplashScreenActivity extends Activity implements SplashScreenView {
             @Override
             public void run() {
 
-                if (sharedPrefs.isLoggedIn()) {
-                    startActivity(new Intent(SplashScreenActivity.this, SplashScreenPresenter.class));
+                if (sharedPrefs.isLoggedIn() || sharedPrefs.isTeacherLoggedIn()) {
+                    startActivity(new Intent(SplashScreenActivity.this, HomeActivity.class));
                     finish();
                 } else {
-                    startActivity(new Intent(SplashScreenActivity.this, SplashScreenPresenter.class));
+                    startActivity(new Intent(SplashScreenActivity.this, WelcomeActivity.class));
                     finish();
                 }
 

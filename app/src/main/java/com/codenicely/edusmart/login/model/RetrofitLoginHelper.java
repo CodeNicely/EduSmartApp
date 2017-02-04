@@ -20,31 +20,31 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class RetrofitLoginHelper implements LoginHelper {
-    private static String TAG ="RetrofitLoginHelper";
+    private static String TAG = "RetrofitLoginHelper";
 
     @Override
-    public void loginData(String user_id, String password,int login_type, final LoginCallback loginCallback) {
+    public void loginData(String user_id, int login_type, final LoginCallback loginCallback) {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-        Retrofit retrofit= new Retrofit.Builder().baseUrl(Urls.BASE_URL).
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(Urls.BASE_URL).
 //                client(client).
-                addConverterFactory(GsonConverterFactory.create()).
-                build();
+        addConverterFactory(GsonConverterFactory.create()).
+                        build();
         RequestLogin requestLogin = retrofit.create(RequestLogin.class);
-        Call<LoginDataResponse> call= requestLogin.requestLogin(user_id,password,login_type);
+        Call<LoginDataResponse> call = requestLogin.requestLogin(user_id, login_type);
         call.enqueue(new Callback<LoginDataResponse>() {
             @Override
             public void onResponse(Call<LoginDataResponse> call, Response<LoginDataResponse> response) {
-                Log.i(TAG,"Got Response "+response.body().getMessage().toString());
-                    loginCallback.onLoginSuccess(response.body());
+                Log.i(TAG, "Got Response " + response.body().getMessage().toString());
+                loginCallback.onLoginSuccess(response.body());
 
             }
 
             @Override
             public void onFailure(Call<LoginDataResponse> call, Throwable t) {
-                        loginCallback.onLoginFailure(t.getMessage());
+                loginCallback.onLoginFailure(t.getMessage());
             }
         });
     }

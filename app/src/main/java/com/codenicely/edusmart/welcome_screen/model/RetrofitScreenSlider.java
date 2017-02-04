@@ -31,7 +31,9 @@ public class RetrofitScreenSlider  implements ScreenSliderHelper{
                     .build();
 
 
-            Retrofit retrofit= new Retrofit.Builder().baseUrl(Urls.BASE_URL).client(client).addConverterFactory(GsonConverterFactory.create()).build();
+            Retrofit retrofit= new Retrofit.Builder().baseUrl(Urls.BASE_URL).
+//                    client(client).
+                    addConverterFactory(GsonConverterFactory.create()).build();
             final RequestScreen requestScreen =retrofit.create(RequestScreen.class);
             Call<WelcomeData> call= requestScreen.requestWelcome();
             call.enqueue(new Callback<WelcomeData>() {
@@ -43,7 +45,7 @@ public class RetrofitScreenSlider  implements ScreenSliderHelper{
 
                 @Override
                 public void onFailure(Call<WelcomeData> call, Throwable t) {
-                    slidesRequest.onFailure();
+//                    slidesRequest.onFailure();
                     Log.d("error",t.getMessage());
                 }
             });

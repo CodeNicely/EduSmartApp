@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
@@ -16,7 +14,7 @@ import android.widget.Toast;
 import com.codenicely.edusmart.R;
 import com.codenicely.edusmart.helper.Keys;
 import com.codenicely.edusmart.helper.SharedPrefs;
-import com.codenicely.edusmart.home.view.HomeActivity;
+import com.codenicely.edusmart.otpVerify.view.OtpActivity;
 import com.codenicely.edusmart.login.model.data.LoginDataResponse;
 import com.codenicely.edusmart.login.model.RetrofitLoginHelper;
 import com.codenicely.edusmart.login.presenter.LoginPresenter;
@@ -34,14 +32,13 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     private SharedPrefs sharedPrefs;
     int login_type;
 
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
     @BindView(R.id.input_user_id)
     TextView editTextUserId;
 
-    @BindView(R.id.input_password)
-    TextView editTextPassword;
 
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
@@ -59,48 +56,30 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
                 finish();
             }
         });
-        if(getIntent()!=null)
-        {
-            login_type=getIntent().getIntExtra(Keys.KEY_LOGIN,0);
+
+        if (getIntent() != null) {
+            login_type = getIntent().getIntExtra(Keys.KEY_LOGIN, 0);
+        }
+
+        if (login_type == 0) {
+            toolbar.setTitle("Teacher Login");
+        } else {
+            toolbar.setTitle("Student Login");
+
         }
 
         sharedPrefs = new SharedPrefs(this);
-        initialise();
     }
 
-    public void initialise() {
-
-        editTextPassword.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length()==10) {
-                    hideKeyboard();
-                }
-                }
-
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-
-            }
-        });
-    }
 
     public void proceed(View v) {
         user_id = editTextUserId.getText().toString();
-        password= editTextPassword.getText().toString();
         if (user_id.isEmpty() || password.isEmpty()) {
             showProgressBar(false);
             showError("Fields cannot be empty");
         } else {
             loginPresenter = new LoginPresenterImp(this, new RetrofitLoginHelper());
-            loginPresenter.getLoginData(user_id, password,login_type);
+            loginPresenter.getLoginData(user_id, login_type);
             hideKeyboard();
         }
 
@@ -118,23 +97,16 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void onLoginSuccess(LoginDataResponse loginDataResponse) {
-        if (loginDataResponse.getLogin_type() == 0) {
-            sharedPrefs.setUserName(user_id);
-            sharedPrefs.setAccessToken(loginDataResponse.getAccess_token());
-            Intent i = new Intent(LoginActivity.this, HomeActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(i);
-            finish();
 
-        } else if(loginDataResponse.getLogin_type()==1){
-            sharedPrefs.setUserName(user_id);
-            sharedPrefs.setAccessToken(loginDataResponse.getAccess_token());
-            Intent i = new Intent(LoginActivity.this, HomeActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(i);
-            finish();
+        Intent i = new Intent(LoginActivity.this, OtpActivity.class);
+        i.putExtra(Keys.KEY_ROLL_NUMBER, editTextUserId.getText().toString());
+        i.putExtra(Keys.KEY_LOGIN_TYPE, login_type);
+        i.putExtra(Keys.KEY_LOGIN_MESSAGE,loginDataResponse.getMessage());
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
+        finish();
 
-        }
+
     }
 
     @Override
