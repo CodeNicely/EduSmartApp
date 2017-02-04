@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/card_margin_medium"
         android:padding="4dp"
+        android:id="@+id/subject_card"
         app:cardCornerRadius="@dimen/card_radius_medium"
         app:contentPadding="@dimen/card_padding_medium">
         <LinearLayout
