@@ -8,7 +8,7 @@ import com.codenicely.edusmart.home.model.data.HomeListData;
 
 public interface OnInformationReceived {
 
-    void onSuccess(Information homeListData);
+    void onSuccess(HomeListData homeListData);
     void onFailed(String message);
 
 

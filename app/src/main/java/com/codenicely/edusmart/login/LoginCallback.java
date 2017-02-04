@@ -1,6 +1,6 @@
 package com.codenicely.edusmart.login;
 
-import com.codenicely.edusmart.login.data.LoginDataResponse;
+import com.codenicely.edusmart.login.model.data.LoginDataResponse;
 
 
 /**

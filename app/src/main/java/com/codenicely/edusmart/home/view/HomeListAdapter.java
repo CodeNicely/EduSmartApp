@@ -21,13 +21,13 @@ import butterknife.BindView;
 
 public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<HomeListDataDetails> homeListDataDetailsList= new ArrayList<>();
+    private List<HomeListDataDetails> homeListDataDetailsList = new ArrayList<>();
     private Context context;
     private LayoutInflater layoutInflater;
-    public HomeListAdapter(Context context)
-    {
-        this.context=context;
-        layoutInflater=LayoutInflater.from(context);
+
+    public HomeListAdapter(Context context) {
+        this.context = context;
+        layoutInflater = LayoutInflater.from(context);
     }
 
     @Override
@@ -38,10 +38,10 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        final HomeListDataDetails homeListDataDetails=homeListDataDetailsList.get(position);
-        HomeViewHolder homeViewHolder= (HomeViewHolder) holder;
-        homeViewHolder.topic_title.setText(homeListDataDetails.getTopic_name());
-        homeViewHolder.topic_description.setText(homeListDataDetails.getTopic_description());
+        final HomeListDataDetails homeListDataDetails = homeListDataDetailsList.get(position);
+        HomeViewHolder homeViewHolder = (HomeViewHolder) holder;
+        homeViewHolder.topic_title.setText(homeListDataDetails.getTitle());
+        homeViewHolder.topic_description.setText(homeListDataDetails.getDescription());
 
 
     }
@@ -51,6 +51,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return homeListDataDetailsList.size();
 
     }
+
     public List<HomeListDataDetails> getHomeListDataDetailsList() {
         return homeListDataDetailsList;
     }
@@ -58,15 +59,17 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void setHomeListDataDetailsList(List<HomeListDataDetails> homeListDataDetailsList) {
         this.homeListDataDetailsList = homeListDataDetailsList;
     }
+
     class HomeViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.topic_title)
         TextView topic_title;
-        @BindView(R.id.topic_description)
+
+        @BindView(R.id.description)
         TextView topic_description;
-        @BindView(R.id.student_count)
-        int student_number;
+
         @BindView(R.id.faculty_name)
         TextView faculty_name;
+
         public HomeViewHolder(View itemView) {
             super(itemView);
         }

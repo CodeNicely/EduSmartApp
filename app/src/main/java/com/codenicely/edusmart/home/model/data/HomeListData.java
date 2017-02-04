@@ -10,14 +10,13 @@ public class HomeListData {
 
     private String message;
     private boolean success;
-    private int count;
+
     private List<HomeListDataDetails> homeListDataDetailsList;
 
-    public HomeListData(String message,boolean success,List<HomeListDataDetails>homeListDataDetailses,int count)
+    public HomeListData(String message,boolean success,List<HomeListDataDetails>homeListDataDetailses)
     {
         this.message=message;
         this.success=success;
-        this.count=count;
         this.homeListDataDetailsList=homeListDataDetailses;
     }
 
@@ -46,11 +45,4 @@ public class HomeListData {
         this.homeListDataDetailsList = homeListDataDetailsList;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
 }

@@ -4,13 +4,17 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.codenicely.edusmart.R;
+import com.codenicely.edusmart.home.model.data.HomeListData;
+import com.codenicely.edusmart.home.view.HomeListAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,6 +48,8 @@ public class InformationFragment extends Fragment implements InformationView {
 
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
+
+    private HomeListAdapter homeListAdapter;
 
     public InformationFragment() {
         // Required empty public constructor
@@ -91,8 +97,12 @@ public class InformationFragment extends Fragment implements InformationView {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_information, container, false);
-
         ButterKnife.bind(view);
+
+        homeListAdapter = new HomeListAdapter(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(homeListAdapter);
         return view;
     }
 
@@ -123,10 +133,24 @@ public class InformationFragment extends Fragment implements InformationView {
     @Override
     public void showLoader(boolean show) {
 
+        if (show) {
+            progressBar.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public void showMessage(String message) {
+
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setData(HomeListData homeListData) {
+
 
     }
 
