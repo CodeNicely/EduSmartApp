@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     public void proceed(View v) {
         user_id = editTextUserId.getText().toString();
-        if (user_id.isEmpty() || password.isEmpty()) {
+        if (user_id.isEmpty() ) {
             showProgressBar(false);
             showError("Fields cannot be empty");
         } else {

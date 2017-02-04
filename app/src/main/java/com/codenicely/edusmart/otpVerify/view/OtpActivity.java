@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -36,8 +37,8 @@ public class OtpActivity extends AppCompatActivity implements OtpView {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @BindView(R.id.mobile_text)
-    EditText txtView;
+    @BindView(R.id.message)
+    TextView displayMessage;
 
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
@@ -55,10 +56,19 @@ public class OtpActivity extends AppCompatActivity implements OtpView {
             roll_number = bundle.getString(Keys.KEY_ROLL_NUMBER);
             otp = bundle.getString(Keys.KEY_OTP);
             message = bundle.getString(Keys.KEY_LOGIN_MESSAGE);
-            login_type=bundle.getInt(Keys.KEY_LOGIN_TYPE);
+            login_type = bundle.getInt(Keys.KEY_LOGIN_TYPE);
+
+            if (login_type == 0) {
+                toolbar.setTitle("Teacher Identity Verify");
+
+            } else if (login_type == 1) {
+                toolbar.setTitle("Student Identity Verify");
+
+            }
+
         }
         sharedPrefs = new SharedPrefs(this);
-        txtView.setText(message);
+        displayMessage.setText(message);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +84,7 @@ public class OtpActivity extends AppCompatActivity implements OtpView {
     public void proceed_verify(View v) {
         otp = editTextOtp.getText().toString();
         otpVerifyPresenter = new OtpVerifyPresenterImp(this, new RetrofitOtpVerifyHelper());
-        otpVerifyPresenter.otpData(otp, roll_number,login_type );
+        otpVerifyPresenter.otpData(otp, roll_number, login_type);
     }
 
     @Override
@@ -97,11 +107,11 @@ public class OtpActivity extends AppCompatActivity implements OtpView {
 
         Intent i = new Intent(this, HomeActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        if(login_type==0){
+        if (login_type == 0) {
 
             sharedPrefs.setTeacherLogin(true);
             sharedPrefs.setLogin(false);
-        }else{
+        } else {
             sharedPrefs.setLogin(true);
             sharedPrefs.setTeacherLogin(false);
         }

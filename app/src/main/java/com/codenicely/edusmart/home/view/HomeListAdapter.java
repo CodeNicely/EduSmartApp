@@ -171,7 +171,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
 
-    private class NoticeViewHolder extends RecyclerView.ViewHolder {
+    public class NoticeViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.notice_logo)
         ImageView notice_logo;
         @BindView(R.id.notice_title)
@@ -187,7 +187,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    private class AnnouncementsViewHolder extends RecyclerView.ViewHolder {
+    public class AnnouncementsViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.announcement_logo)
         ImageView announcement_logo;
         @BindView(R.id.announcement_title)
@@ -204,7 +204,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    private class ResourcesViewHolder extends RecyclerView.ViewHolder {
+    public class ResourcesViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.resource_logo)
         ImageView resource_logo;
         @BindView(R.id.resource_title)
@@ -221,7 +221,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    private class HeadingViewHolder extends RecyclerView.ViewHolder {
+    public class HeadingViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.heading_title)
         TextView heading_title;
         public HeadingViewHolder(View view) {
@@ -229,7 +229,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    private class AssignmentsViewHolder extends RecyclerView.ViewHolder {
+    public class AssignmentsViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.assignment_logo)
         ImageView assignment_logo;
         @BindView(R.id.assignmenta_title)
@@ -246,7 +246,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    private class SubjectViewHolder extends RecyclerView.ViewHolder {
+    public class SubjectViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.subject_logo)
         ImageView subject_logo;
         @BindView(R.id.subject_title)
@@ -265,7 +265,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    private class EmptyViewHolder extends RecyclerView.ViewHolder {
+    public class EmptyViewHolder extends RecyclerView.ViewHolder {
         public EmptyViewHolder(View view) {
             super(view);
         }
