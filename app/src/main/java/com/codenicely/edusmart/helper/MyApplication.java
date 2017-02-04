@@ -1,9 +1,12 @@
 package com.codenicely.edusmart.helper;
 
 import android.app.Application;
+import android.content.ContentValues;
 import android.content.Context;
 import android.util.Log;
 
+
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 
@@ -35,6 +38,19 @@ public class MyApplication extends Application {
         Log.d(TAG, "Fcm is " + fcm_token);
         return fcm_token;
     }
+
+    public static String getFcm(){
+
+
+        if(FirebaseInstanceId.getInstance().getToken()!=null) {
+            Log.d(ContentValues.TAG,FirebaseInstanceId.getInstance().getToken());
+
+            return FirebaseInstanceId.getInstance().getToken();
+        }else{
+            return "FcmTokenNotAvailable";
+        }
+    }
+
 
     public static Context getContext() {
         return context;

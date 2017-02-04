@@ -29,13 +29,13 @@ import java.util.List;
 import butterknife.BindView;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener {
     private NavigationView navigationView;
     private SharedPrefs sharedPrefs;
     @BindView(R.id.recyclerView)
-     RecyclerView recyclerView;
+    RecyclerView recyclerView;
     @BindView(R.id.progressBar)
-     ProgressBar progressBar;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,15 +43,9 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        sharedPrefs=new SharedPrefs(getApplicationContext());
+        sharedPrefs = new SharedPrefs(getApplicationContext());
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -59,8 +53,11 @@ public class HomeActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView= (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        addFragment(new HomeFragment(), "HomeFragment");
+
     }
 
     @Override
@@ -101,25 +98,26 @@ public class HomeActivity extends AppCompatActivity
 
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-            if (id == R.id.nav_home) {
-                // Handle the camera action
-            } else if (id == R.id.nav_address) {
+        if (id == R.id.nav_home) {
+            // Handle the camera action
+            addFragment(new HomeFragment(),"HomeFragment");
+        } else if (id == R.id.nav_address) {
 
-                addFragment(new UploadFragment(),"Upload");
+            addFragment(new UploadFragment(), "Upload");
 
-            } else if (id == R.id.nav_my_cart) {
+        } else if (id == R.id.nav_my_cart) {
 
-            } else if (id == R.id.nav_my_order) {
+        } else if (id == R.id.nav_my_order) {
 
-            } else if (id == R.id.nav_about_us) {
+        } else if (id == R.id.nav_about_us) {
 
-            } else if (id == R.id.nav_call_us) {
+        } else if (id == R.id.nav_call_us) {
 
-            }
+        }
 
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            drawer.closeDrawer(GravityCompat.START);
-            return true;
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     public void setFragment(Fragment fragment, String title) {

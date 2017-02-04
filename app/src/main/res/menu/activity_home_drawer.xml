@@ -1,41 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <group android:checkableBehavior="single">
-            <item
-                android:id="@+id/nav_home"
-                android:icon="@drawable/ic_menu_camera"
-                android:title="@string/nav_item_home" />
-            <item
-                android:id="@+id/nav_address"
-                android:icon="@drawable/ic_menu_camera"
-                android:title="@string/nav_item_address" />
-            <item
-                android:id="@+id/nav_my_cart"
-                android:icon="@drawable/ic_menu_camera"
-                android:title="@string/nav_item_my_cart" />
-            <item
-                android:id="@+id/nav_my_order"
-                android:icon="@drawable/ic_menu_camera"
-                android:title="@string/nav_item_my_orders" />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="@string/nav_item_home" />
+        <!--            <item
+                        android:id="@+id/nav_address"
+                        android:icon="@drawable/ic_menu_camera"
+                        android:title="@string/nav_item_address" />-->
+        <!--        <item
+                    android:id="@+id/nav_my_cart"
+                    android:icon="@drawable/ic_menu_camera"
+                    android:title="@string/nav_item_my_cart" />-->
+        <item
+            android:id="@+id/nav_notices"
+            android:title="@string/nav_item_notices" />
 
-            <item
-                android:id="@+id/nav_search_product"
-                android:icon="@drawable/ic_menu_camera"
-                android:title="@string/nav_item_search_products" />
+        <item
+            android:id="@+id/nav_announcement"
+            android:title="@string/nav_item_announcement" />
 
-            <item
-                android:id="@+id/nav_call_us"
-                android:icon="@drawable/ic_menu_camera"
-                android:title="@string/nav_item_call_us" />
-            <item
-                android:id="@+id/nav_about_us"
-                android:icon="@drawable/ic_menu_camera"
-                android:title="@string/nav_item_about_us" />
-            <item
-                android:id="@+id/nav_contact_us"
-                android:icon="@drawable/ic_menu_camera"
-                android:title="@string/nav_item_contact_us" />
-        </group>
+        <item
+            android:id="@+id/nav_assignments"
+            android:title="@string/nav_item_assignments" />
+        <item
+            android:id="@+id/nav_resources"
+            android:title="@string/nav_resources" />
+        <item
+            android:id="@+id/nav_threads"
+            android:title="@string/nav_item_threads" />
+    </group>
 
 </menu>

@@ -6,7 +6,5 @@ package com.codenicely.edusmart.information.presenter;
 
 public interface InformationPresenter {
 
-
-    void requestInformation(String access_token,String subject_id,int type);
-
+    void requestInformation(String access_token, String subject_id, int type);
 }

@@ -4,11 +4,13 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.codenicely.edusmart.R;
 import com.codenicely.edusmart.helper.SharedPrefs;
@@ -51,6 +53,8 @@ public class HomeFragment extends Fragment implements HomeView {
     private HomeListProviderHelper homeListProviderHelper;
     private SharedPrefs sharedPrefs;
 
+    private HomeListAdapter homeListAdapter;
+
     private OnFragmentInteractionListener mListener;
 
     public HomeFragment() {
@@ -88,9 +92,9 @@ public class HomeFragment extends Fragment implements HomeView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
-        sharedPrefs=new SharedPrefs(getContext());
+        sharedPrefs = new SharedPrefs(getContext());
         ((HomeActivity) getActivity()).getSupportActionBar().show();
         initialise();
         return view;
@@ -98,8 +102,14 @@ public class HomeFragment extends Fragment implements HomeView {
     }
 
     private void initialise() {
-        homeListPresenter=new HomeListPresenterImpl(new RetrofitHomeListProvider(),this);
+        homeListPresenter = new HomeListPresenterImpl(new RetrofitHomeListProvider(), this);
+        homeListAdapter = new HomeListAdapter(getContext());
 
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(homeListAdapter);
+
+        homeListPresenter.getHomeList(sharedPrefs.getAccessToken());
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -112,12 +122,12 @@ public class HomeFragment extends Fragment implements HomeView {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
+/*        if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
-        }
+        }*/
     }
 
     @Override
@@ -129,15 +139,25 @@ public class HomeFragment extends Fragment implements HomeView {
     @Override
     public void showProgressBar(boolean show) {
 
+        if (show) {
+            progressBar.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
+        }
+
     }
 
     @Override
     public void showMessage(String message) {
 
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void setHomeList(List<HomeListDataDetails> homeListDataList) {
+
 
     }
 
