@@ -20,8 +20,8 @@ public class SplashScreenPresenterImpl implements SplashScreenPresenter {
         this.splashScreenView=splashScreenView;
     }
     @Override
-    public void sendFcm(String fcm) {
-        splashScreenHelperClass.sendFcm(fcm, new SplashScreenCallback() {
+    public void sendFcm() {
+        splashScreenHelperClass.sendFcm( new SplashScreenCallback() {
             @Override
             public void onSuccess(SplashScreenData splashScreenData) {
                 if (splashScreenData.isSuccess()) {

@@ -5,5 +5,5 @@ package com.codenicely.edusmart.splash_screen.presenter;
  */
 
 public interface SplashScreenPresenter {
-    void sendFcm(String fcm);
+    void sendFcm();
 }

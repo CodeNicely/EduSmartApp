@@ -3,11 +3,7 @@ package com.codenicely.edusmart.home.presenter;
 import com.codenicely.edusmart.home.HomeActivityListCallback;
 import com.codenicely.edusmart.home.model.HomeListProviderHelper;
 import com.codenicely.edusmart.home.model.data.HomeListData;
-import com.codenicely.edusmart.home.model.data.HomeListDataDetails;
-import com.codenicely.edusmart.home.view.HomeActivity;
 import com.codenicely.edusmart.home.view.HomeView;
-
-import java.util.List;
 
 /**
  * Created by ramya on 4/2/17.
@@ -30,7 +26,7 @@ public class HomeListPresenterImpl implements HomeListPresenter {
             public void onSuccess(HomeListData homeListData) {
                 if(homeListData.isSuccess())
                 {
-                    homeView.setHomeList(homeListData.getHomeListDataDetailsList());
+                    homeView.setHomeList(homeListData.getHome_data_list());
                 }
                 homeView.showProgressBar(false);
             }

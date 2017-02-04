@@ -20,8 +20,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitSplashScreenProvider implements SplashScreenHelperClass {
     private SplashScreenApi splashScreenApi;
-    public  RetrofitSplashScreenProvider()
-    {
+
+    public RetrofitSplashScreenProvider() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor)
@@ -29,16 +29,17 @@ public class RetrofitSplashScreenProvider implements SplashScreenHelperClass {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Urls.BASE_URL)
-                .client(client)
+//                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
         splashScreenApi = retrofit.create(SplashScreenApi.class);
 
     }
+
     @Override
-    public void sendFcm(String fcm, final SplashScreenCallback splashScreenCallback) {
-        Call<SplashScreenData> call=splashScreenApi.sendFcm(fcm);
+    public void sendFcm(final SplashScreenCallback splashScreenCallback) {
+        Call<SplashScreenData> call = splashScreenApi.sendFcm();
         call.enqueue(new Callback<SplashScreenData>() {
             @Override
             public void onResponse(Call<SplashScreenData> call, Response<SplashScreenData> response) {
@@ -47,7 +48,7 @@ public class RetrofitSplashScreenProvider implements SplashScreenHelperClass {
 
             @Override
             public void onFailure(Call<SplashScreenData> call, Throwable t) {
-            splashScreenCallback.onFailed();
+                splashScreenCallback.onFailed();
             }
         });
 

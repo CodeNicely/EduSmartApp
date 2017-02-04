@@ -1,7 +1,7 @@
 package com.codenicely.edusmart.login.api;
 
 import com.codenicely.edusmart.helper.Urls;
-import com.codenicely.edusmart.login.data.LoginDataResponse;
+import com.codenicely.edusmart.login.model.data.LoginDataResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -15,5 +15,6 @@ import retrofit2.http.POST;
 public interface RequestLogin {
     @FormUrlEncoded
     @POST(Urls.SUB_URL_LOGIN)
-    Call<LoginDataResponse> getJSON(@Field("user_id") String user_id, @Field("password") String password,@Field("login_type") int login_type);
+    Call<LoginDataResponse> requestLogin(@Field("roll_no") String user_id,
+                                         @Field("login_type") int login_type);
 }

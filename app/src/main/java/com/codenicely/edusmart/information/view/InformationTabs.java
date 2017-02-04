@@ -3,12 +3,15 @@ package com.codenicely.edusmart.information.view;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.codenicely.edusmart.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +30,12 @@ public class InformationTabs extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    //    @BindView(R.id.viewPager)
+    private ViewPager viewpager;
+    //    @BindView(R.id.tabLayout)
+    private TabLayout tabLayout;
+
+    private ViewPagerAdapter viewPagerAdapter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -65,7 +74,30 @@ public class InformationTabs extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_information_tabs, container, false);
+        View view = inflater.inflate(R.layout.fragment_information_tabs, container, false);
+        tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
+        viewpager = (ViewPager) view.findViewById(R.id.viewPager);
+        viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
+        viewpager.setAdapter(viewPagerAdapter);
+        tabLayout.setupWithViewPager(viewpager);
+        viewpager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+
+        return view;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+
+    @Override
+    public void onStart() {
+        viewPagerAdapter.notifyDataSetChanged();
+
+        super.onStart();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -78,12 +110,7 @@ public class InformationTabs extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+
     }
 
     @Override
@@ -97,7 +124,7 @@ public class InformationTabs extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p>
+     * <p/>
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
@@ -106,4 +133,17 @@ public class InformationTabs extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+/*    public void setFragment(Fragment fragment, String title) {
+        if (fragment != null) {
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.home_layout, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+            getActivity().getActionBar().setTitle("" + title);
+
+        }
+
+    }*/
 }

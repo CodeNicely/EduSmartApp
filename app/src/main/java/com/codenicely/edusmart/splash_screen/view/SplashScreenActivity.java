@@ -12,18 +12,18 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.codenicely.edusmart.R;
-import com.codenicely.edusmart.helper.MyApplication;
 import com.codenicely.edusmart.helper.SharedPrefs;
 import com.codenicely.edusmart.home.view.HomeActivity;
 import com.codenicely.edusmart.splash_screen.model.RetrofitSplashScreenProvider;
 import com.codenicely.edusmart.splash_screen.model.data.SplashScreenData;
 import com.codenicely.edusmart.splash_screen.presenter.SplashScreenPresenter;
 import com.codenicely.edusmart.splash_screen.presenter.SplashScreenPresenterImpl;
+import com.codenicely.edusmart.welcome_screen.view.WelcomeActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SplashScreenActivity extends Activity  implements SplashScreenView{
+public class SplashScreenActivity extends Activity implements SplashScreenView {
     private Handler handler;
     private SplashScreenPresenter splashScreenPresenter;
     private SharedPrefs sharedPrefs;
@@ -41,17 +41,19 @@ public class SplashScreenActivity extends Activity  implements SplashScreenView{
         ButterKnife.bind(this);
         ButterKnife.bind(this);
         Glide.with(this).load(R.drawable.code_nicely_logo_small_colored).into(code_nicely_logo);
-        Glide.with(this).load(R.drawable.code_nicely_logo_small_colored).into(edu_smart_logo);
+        Glide.with(this).load(R.drawable.edusmart_logo).into(edu_smart_logo);
+/*
 
         Intent intent=new Intent(SplashScreenActivity.this, HomeActivity.class);
         startActivity(intent);
         finish();
+*/
 
-        splashScreenPresenter = new SplashScreenPresenterImpl(new RetrofitSplashScreenProvider(),this);
-//        splashScreenPresenter.sendFcm(MyApplication.getFcm_token());
+        splashScreenPresenter = new SplashScreenPresenterImpl(new RetrofitSplashScreenProvider(), this);
+        splashScreenPresenter.sendFcm();
         sharedPrefs = new SharedPrefs(this);
 
-        }
+    }
 
     @Override
     public void onVersionReceived(SplashScreenData splashScreenData) throws PackageManager.NameNotFoundException {
@@ -85,12 +87,10 @@ public class SplashScreenActivity extends Activity  implements SplashScreenView{
                     if (sharedPrefs.isLoggedIn()) {
                         startActivity(new Intent(SplashScreenActivity.this, SplashScreenPresenter.class));
                         finish();
-                    }
-                    else if (sharedPrefs.isTeacherLoggedIn()) {
-                        startActivity(new Intent(SplashScreenActivity.this,SplashScreenPresenter.class));
+                    } else if (sharedPrefs.isTeacherLoggedIn()) {
+                        startActivity(new Intent(SplashScreenActivity.this, SplashScreenPresenter.class));
                         finish();
-                    }
-                    else{
+                    } else {
                         startActivity(new Intent(SplashScreenActivity.this, SplashScreenPresenter.class));
                         finish();
                     }
@@ -131,24 +131,16 @@ public class SplashScreenActivity extends Activity  implements SplashScreenView{
                 @Override
                 public void run() {
 
-                    if (sharedPrefs.isLoggedIn()) {
-                        startActivity(new Intent(SplashScreenActivity.this, SplashScreenPresenter.class));
+                    if (sharedPrefs.isLoggedIn() || sharedPrefs.isTeacherLoggedIn()) {
+                        startActivity(new Intent(SplashScreenActivity.this, HomeActivity.class));
                         finish();
-                    }
-                    else if(sharedPrefs.isTeacherLoggedIn())
-                    {
-                        startActivity(new Intent(SplashScreenActivity.this, SplashScreenPresenter.class));
-                        finish();
-
-                    }
-
-                    else {
-                        startActivity(new Intent(SplashScreenActivity.this, SplashScreenPresenter.class));
+                    } else{
+                        startActivity(new Intent(SplashScreenActivity.this,WelcomeActivity.class));
                         finish();
                     }
 
                 }
-            }, 3000);
+            }, 1000);
         }
     }
 
@@ -159,11 +151,11 @@ public class SplashScreenActivity extends Activity  implements SplashScreenView{
             @Override
             public void run() {
 
-                if (sharedPrefs.isLoggedIn()) {
-                    startActivity(new Intent(SplashScreenActivity.this, SplashScreenPresenter.class));
+                if (sharedPrefs.isLoggedIn() || sharedPrefs.isTeacherLoggedIn()) {
+                    startActivity(new Intent(SplashScreenActivity.this, HomeActivity.class));
                     finish();
                 } else {
-                    startActivity(new Intent(SplashScreenActivity.this, SplashScreenPresenter.class));
+                    startActivity(new Intent(SplashScreenActivity.this, WelcomeActivity.class));
                     finish();
                 }
 

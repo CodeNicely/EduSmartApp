@@ -13,5 +13,5 @@ import retrofit2.http.Query;
 
 public interface SplashScreenApi {
     @GET(Urls.SUB_URL_SPLASH_SCREEN)
-    Call<SplashScreenData> sendFcm(@Query("fcm") String fcm);
+    Call<SplashScreenData> sendFcm();
 }

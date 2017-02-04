@@ -32,31 +32,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/card_margin_medium"
-            app:cardBackgroundColor="#00000000"
             android:padding="4dp"
+            app:cardBackgroundColor="#00000000"
             app:cardCornerRadius="@dimen/card_radius_medium"
             app:contentPadding="@dimen/card_padding_medium">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp"
                 android:elevation="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="5dp">
 
                 <TextView
                     android:id="@+id/Intro_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:padding="16dp"
                     android:text="@string/Introduction"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="@dimen/textSizeSmall"
-                    android:padding="16dp"
-                    />
+                    android:textSize="@dimen/textSizeSmall" />
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/input_layout_roll_no"
@@ -64,26 +63,13 @@
                     android:layout_height="wrap_content">
 
                     <EditText
+                        android:gravity="center"
                         android:id="@+id/input_user_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="User Id"
-                        android:inputType="number"/>
+                        android:inputType="number" />
                 </android.support.design.widget.TextInputLayout>
-
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/input_layout_password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <EditText
-                            android:id="@+id/input_password"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Password"
-                            android:inputType="textPassword" />
-                    </android.support.design.widget.TextInputLayout>
 
                 <Button
                     android:id="@+id/logIn"
@@ -93,7 +79,7 @@
                     android:elevation="10dp"
                     android:onClick="proceed"
                     android:padding="10dp"
-                    android:text="Log In"
+                    android:text="Proceed"
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF"
                     android:textSize="@dimen/textSizeSmall"

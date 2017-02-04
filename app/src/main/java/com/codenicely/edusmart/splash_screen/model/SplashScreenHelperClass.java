@@ -7,5 +7,5 @@ import com.codenicely.edusmart.splash_screen.SplashScreenCallback;
  */
 
 public interface SplashScreenHelperClass {
-    void sendFcm(String fcm, SplashScreenCallback splashScreenCallback);
+    void sendFcm( SplashScreenCallback splashScreenCallback);
 }
