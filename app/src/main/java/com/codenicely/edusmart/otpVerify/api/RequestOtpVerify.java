@@ -16,7 +16,7 @@ public interface RequestOtpVerify {
     @FormUrlEncoded
     @POST(Urls.SUB_URL_VERIFY)
     Call<OtpData> getJson(@Field("otp") String otp,
-                          @Field("roll_number") String mobile,
+                          @Field("roll_no") String roll_number,
                           @Field("login_type") int login_type);
 
 }

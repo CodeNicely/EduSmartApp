@@ -42,8 +42,7 @@ public class InformationPresenterImpl implements InformationPresenter {
             public void onFailed(String message) {
 
                 informationView.showLoader(false);
-                informationView.showMessage(MyApplication.getContext().getResources().
-                        getString(R.string.failure_message));
+                informationView.showMessage(message);
 
 
             }

@@ -151,6 +151,8 @@ public class InformationFragment extends Fragment implements InformationView {
     @Override
     public void setData(HomeListData homeListData) {
 
+        homeListAdapter.setHomeListDataDetailsList(homeListData.getHome_data_list());
+        homeListAdapter.notifyDataSetChanged();
 
     }
 

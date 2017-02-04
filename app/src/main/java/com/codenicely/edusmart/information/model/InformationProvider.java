@@ -11,5 +11,4 @@ public interface InformationProvider {
     void requestInformation(String access_token, String subject_id, int type,
                             OnInformationReceived onInformationReceived);
 
-
 }

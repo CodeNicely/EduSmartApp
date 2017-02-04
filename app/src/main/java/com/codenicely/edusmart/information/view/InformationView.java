@@ -11,5 +11,4 @@ public interface InformationView {
     void showLoader(boolean show);
     void showMessage(String message);
     void setData(HomeListData homeListData);
-
 }
