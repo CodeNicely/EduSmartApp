@@ -40,8 +40,8 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         final HomeListDataDetails homeListDataDetails=homeListDataDetailsList.get(position);
         HomeViewHolder homeViewHolder= (HomeViewHolder) holder;
-        homeViewHolder.topic_title.setText(homeListDataDetails.getTopic_name());
-        homeViewHolder.topic_description.setText(homeListDataDetails.getTopic_description());
+        homeViewHolder.topic_title.setText(homeListDataDetails.getTitle());
+        homeViewHolder.topic_description.setText(homeListDataDetails.getDescription());
 
 
     }

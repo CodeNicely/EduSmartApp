@@ -23,7 +23,7 @@
             android:text="fsdfdzx"
             android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:id="@+id/topic_description" />
+            android:id="@+id/description" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

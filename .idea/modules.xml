@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/EduSmartApp.iml" filepath="$PROJECT_DIR$/EduSmartApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/edusmart.iml" filepath="$PROJECT_DIR$/edusmart.iml" />
     </modules>
   </component>
 </project>
