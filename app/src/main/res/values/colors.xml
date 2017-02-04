@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1F4901</color>
+    <color name="colorPrimaryDark">#1A3C01</color>
+    <color name="colorAccent">#A22C29</color>
+
+
+
+
+    <color name="accentOrange">#FE6C54</color>
+    <color name="accentBlue">#01579B</color>
+    <!--<color name="colorAccent">#C1C1C1</color>-->
+    <!-- <color name="colorPrimary">#480000</color>
+    <color name="colorPrimaryDark">#2E0000</color>
+    <color name="colorAccent">#A63C06</color>
+   -->
+    <color name="white">#FFFFFF</color>
+    <color name="color_text">#126259</color>
+    <color name="transparent">#00000000</color>
+    <color name="feed_bg">#d3d6db</color>
+    <color name="feed_item_bg">#ffffff</color>
+    <color name="feed_item_border">#E1F5FE</color>
+    //
+    <color name="check_out_bg">#80D8FF</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="black">#000000</color>
+    <color name="dullWhite">#A3A3A3</color>
+    <color name="green">#0A8D72</color>
+</resources>
