@@ -12,4 +12,5 @@ public class Urls {
     public static final String SUB_URL_HOME ="/home/" ;
     public static final String SUB_URL_UPLOAD ="/upload/" ;
     public static final String SUB_URL_VERIFY = "/verify/";
+    public static final String SUB_URL_INFORMATION ="/information" ;
 }

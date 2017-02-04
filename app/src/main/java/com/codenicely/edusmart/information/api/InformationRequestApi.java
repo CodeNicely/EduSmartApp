@@ -5,4 +5,5 @@ package com.codenicely.edusmart.information.api;
  */
 
 public interface InformationRequestApi {
+
 }
