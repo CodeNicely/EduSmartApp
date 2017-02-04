@@ -155,7 +155,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         else
        {
                HeadingViewHolder headingViewHolder= (HeadingViewHolder)holder;
-           
+
        }
     }
 
