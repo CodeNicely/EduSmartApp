@@ -10,13 +10,12 @@ public class HomeListData {
 
     private String message;
     private boolean success;
-
     private List<HomeListDataDetails> home_data_list;
 
-    public HomeListData(String message, boolean success, List<HomeListDataDetails> homeListDataDetailses) {
+    public HomeListData(String message, boolean success, List<HomeListDataDetails> home_data_list) {
         this.message = message;
         this.success = success;
-        this.home_data_list = homeListDataDetailses;
+        this.home_data_list = home_data_list;
     }
 
 

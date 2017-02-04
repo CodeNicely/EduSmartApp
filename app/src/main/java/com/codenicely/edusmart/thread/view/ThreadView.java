@@ -13,5 +13,7 @@ public interface ThreadView {
 
     void showLoader(boolean show);
 
+    void showDialog(boolean show);
+
     void setData(ThreadData threadData);
 }

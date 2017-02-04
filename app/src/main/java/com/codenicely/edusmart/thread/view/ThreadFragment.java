@@ -1,9 +1,11 @@
 package com.codenicely.edusmart.thread.view;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +49,8 @@ public class ThreadFragment extends Fragment implements ThreadView{
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
+    private ThreadAdapter threadAdapter;
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -80,6 +84,13 @@ public class ThreadFragment extends Fragment implements ThreadView{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_thread, container, false);
         ButterKnife.bind(view);
+        threadAdapter=new ThreadAdapter(getContext());
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
+
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(threadAdapter);
+
+
 
         return view;
     }
@@ -130,9 +141,21 @@ public class ThreadFragment extends Fragment implements ThreadView{
     }
 
     @Override
+    public void showDialog(boolean show) {
+
+        ProgressDialog progressDialog=new ProgressDialog(getContext());
+        progressDialog.setTitle("Creating Thread");
+        progressDialog.setMessage("Please Wait. . .");
+        progressDialog.show();
+
+    }
+
+    @Override
     public void setData(ThreadData threadData) {
 
 
+        threadAdapter.setData(threadData.getThreadDetailsList());
+        threadAdapter.notifyDataSetChanged();
 
     }
     /**

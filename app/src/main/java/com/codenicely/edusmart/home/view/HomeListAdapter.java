@@ -3,6 +3,7 @@ package com.codenicely.edusmart.home.view;
 import android.content.Context;
 import android.support.v4.app.NotificationCompatSideChannelService;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+
+import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 
 /**
  * Created by ramya on 4/2/17.
@@ -47,28 +51,22 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (viewType == CARD_TYPE_NOTICE) {
             View view = layoutInflater.inflate(R.layout.notice_item, parent, false);
             return new NoticeViewHolder(view);
-        }
-        else if (viewType == CARD_TYPE_ANNOUNCEMENTS) {
+        } else if (viewType == CARD_TYPE_ANNOUNCEMENTS) {
             View view = layoutInflater.inflate(R.layout.announcement_item, parent, false);
             return new AnnouncementsViewHolder(view);
-        }
-        else if (viewType == CARD_TYPE_RESOURCES) {
+        } else if (viewType == CARD_TYPE_RESOURCES) {
             View view = layoutInflater.inflate(R.layout.resources_item, parent, false);
             return new ResourcesViewHolder(view);
-        }
-        else if (viewType == CARD_TYPE_HEADING) {
+        } else if (viewType == CARD_TYPE_HEADING) {
             View view = layoutInflater.inflate(R.layout.heading_item, parent, false);
             return new HeadingViewHolder(view);
-        }
-        else if (viewType == CARD_TYPE_ASSIGNMENTS) {
+        } else if (viewType == CARD_TYPE_ASSIGNMENTS) {
             View view = layoutInflater.inflate(R.layout.assignments_item, parent, false);
             return new AssignmentsViewHolder(view);
-        }
-        else if (viewType == CARD_TYPE_SUBJECT) {
+        } else if (viewType == CARD_TYPE_SUBJECT) {
             View view = layoutInflater.inflate(R.layout.subject_item, parent, false);
             return new SubjectViewHolder(view);
-        }
-        else {
+        } else {
             View view = layoutInflater.inflate(R.layout.empty_item, parent, false);
             return new EmptyViewHolder(view);
         }
@@ -78,23 +76,17 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public int getItemViewType(int position) {
         if (homeListDataDetailsList.get(position).getCard_type() == CARD_TYPE_NOTICE) {
             return CARD_TYPE_NOTICE;
-        }
-        else if (homeListDataDetailsList.get(position).getCard_type() == CARD_TYPE_ANNOUNCEMENTS) {
+        } else if (homeListDataDetailsList.get(position).getCard_type() == CARD_TYPE_ANNOUNCEMENTS) {
             return CARD_TYPE_ANNOUNCEMENTS;
-        }
-        else if (homeListDataDetailsList.get(position).getCard_type() == CARD_TYPE_RESOURCES) {
+        } else if (homeListDataDetailsList.get(position).getCard_type() == CARD_TYPE_RESOURCES) {
             return CARD_TYPE_RESOURCES;
-        }
-        else if (homeListDataDetailsList.get(position).getCard_type() == CARD_TYPE_HEADING) {
+        } else if (homeListDataDetailsList.get(position).getCard_type() == CARD_TYPE_HEADING) {
             return CARD_TYPE_HEADING;
-        }
-        else if (homeListDataDetailsList.get(position).getCard_type() == CARD_TYPE_ASSIGNMENTS) {
+        } else if (homeListDataDetailsList.get(position).getCard_type() == CARD_TYPE_ASSIGNMENTS) {
             return CARD_TYPE_ASSIGNMENTS;
-        }
-        else if (homeListDataDetailsList.get(position).getCard_type() == CARD_TYPE_SUBJECT) {
+        } else if (homeListDataDetailsList.get(position).getCard_type() == CARD_TYPE_SUBJECT) {
             return CARD_TYPE_SUBJECT;
-        }
-        else {
+        } else {
             return -999;
         }
     }
@@ -141,8 +133,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             subjectViewHolder.subject_logo.setImageResource(R.drawable.ic_subject_purple_600_24dp);
 
 
-        }
-        else if (homeListDataDetails.getCard_type() == CARD_TYPE_ANNOUNCEMENTS) {
+        } else if (homeListDataDetails.getCard_type() == CARD_TYPE_ANNOUNCEMENTS) {
             AnnouncementsViewHolder announcementsViewHolder = (AnnouncementsViewHolder) holder;
             announcementsViewHolder.announcement_title.setText(homeListDataDetails.getTitle());
             announcementsViewHolder.announcement_description.setText(homeListDataDetails.getDescription());
@@ -158,13 +149,11 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
+        Log.d(TAG,"Items Received"+String.valueOf(homeListDataDetailsList.size()));
         return homeListDataDetailsList.size();
 
     }
 
-    public List<HomeListDataDetails> getHomeListDataDetailsList() {
-        return homeListDataDetailsList;
-    }
 
     public void setHomeListDataDetailsList(List<HomeListDataDetails> homeListDataDetailsList) {
         this.homeListDataDetailsList = homeListDataDetailsList;
@@ -182,8 +171,11 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         TextView notice_description;
         @BindView(R.id.notice_timestamp)
         TextView notice_timestamp;
+
         public NoticeViewHolder(View view) {
             super(view);
+            ButterKnife.bind(this,view);
+
         }
     }
 
@@ -201,6 +193,8 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         public AnnouncementsViewHolder(View view) {
             super(view);
+            ButterKnife.bind(this,view);
+
         }
     }
 
@@ -218,14 +212,18 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         public ResourcesViewHolder(View view) {
             super(view);
+            ButterKnife.bind(this,view);
+
         }
     }
 
     public class HeadingViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.heading_title)
         TextView heading_title;
+
         public HeadingViewHolder(View view) {
             super(view);
+            ButterKnife.bind(this,view);
         }
     }
 
@@ -243,6 +241,8 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         public AssignmentsViewHolder(View view) {
             super(view);
+            ButterKnife.bind(this,view);
+
         }
     }
 
@@ -262,12 +262,16 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         public SubjectViewHolder(View view) {
             super(view);
+            ButterKnife.bind(this,view);
+
         }
     }
 
     public class EmptyViewHolder extends RecyclerView.ViewHolder {
         public EmptyViewHolder(View view) {
             super(view);
+            ButterKnife.bind(this,view);
+
         }
     }
 

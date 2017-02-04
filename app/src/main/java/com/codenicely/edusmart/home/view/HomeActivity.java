@@ -1,5 +1,6 @@
 package com.codenicely.edusmart.home.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -22,7 +23,9 @@ import android.widget.ProgressBar;
 import com.codenicely.edusmart.R;
 import com.codenicely.edusmart.helper.SharedPrefs;
 import com.codenicely.edusmart.home.model.data.HomeListData;
+import com.codenicely.edusmart.login.view.LoginActivity;
 import com.codenicely.edusmart.spot_upload.view.UploadFragment;
+import com.codenicely.edusmart.welcome_screen.view.WelcomeActivity;
 
 import java.util.List;
 
@@ -101,17 +104,24 @@ public class HomeActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             // Handle the camera action
             addFragment(new HomeFragment(),"HomeFragment");
-        } else if (id == R.id.nav_address) {
+        } else if (id == R.id.nav_notices) {
 
-            addFragment(new UploadFragment(), "Upload");
-
+//            addFragment(new UploadFragment(), "Upload");
+                sharedPrefs.setLogin(false);
+            sharedPrefs.setTeacherLogin(false);
+            Intent intent=new Intent(HomeActivity.this,WelcomeActivity.class);
+            startActivity(intent);
+            finish();
         } else if (id == R.id.nav_my_cart) {
+
+
 
         } else if (id == R.id.nav_my_order) {
 
         } else if (id == R.id.nav_about_us) {
 
         } else if (id == R.id.nav_call_us) {
+
 
         }
 

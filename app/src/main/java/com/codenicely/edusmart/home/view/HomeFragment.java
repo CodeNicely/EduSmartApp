@@ -144,7 +144,7 @@ public class HomeFragment extends Fragment implements HomeView {
             recyclerView.setVisibility(View.GONE);
         } else {
             progressBar.setVisibility(View.GONE);
-            progressBar.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.VISIBLE);
         }
 
     }
@@ -157,6 +157,10 @@ public class HomeFragment extends Fragment implements HomeView {
 
     @Override
     public void setHomeList(List<HomeListDataDetails> homeListDataList) {
+
+
+        homeListAdapter.setHomeListDataDetailsList(homeListDataList);
+        homeListAdapter.notifyDataSetChanged();
 
 
     }
