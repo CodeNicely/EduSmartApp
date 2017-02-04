@@ -8,29 +8,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/card_margin_medium"
-        app:cardBackgroundColor="#00000000"
         android:padding="4dp"
         app:cardCornerRadius="@dimen/card_radius_medium"
         app:contentPadding="@dimen/card_padding_medium">
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="blshdish"
-            android:id="@+id/topic_title"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="fsdfdzx"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:id="@+id/description" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/student_count"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/faculty_name"/>
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/resource_logo"
+                android:padding="24dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="blshdish"
+                android:layout_gravity="center"
+                android:id="@+id/resource_title"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="fsdfdzx"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/resource_description" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="bdagsd"
+                android:id="@+id/resource_timestamp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/resource_author"
+                android:padding="10dp"
+                android:text="mdfsdf"/>
+        </LinearLayout>
+
 
 
     </android.support.v7.widget.CardView>

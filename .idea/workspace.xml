@@ -195,8 +195,8 @@
           </provider>
 >>>>>>> d9c46ec19d2f37416f8a26a0a4bb8ef41748d4fc
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="43" column="36" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
+            <state relative-caret-position="206">
+              <caret line="36" column="31" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
               <folding>
                 <element signature="e#446#473#0" expanded="true" />
                 <element signature="e#533#560#0" expanded="true" />
@@ -2809,12 +2809,17 @@
   </component>
   <component name="ToolWindowManager">
 <<<<<<< HEAD
+    <frame x="61" y="24" width="1305" height="744" extended-state="6" />
+    <editor active="true" />
+=======
+<<<<<<< HEAD
     <frame x="-1366" y="792" width="1366" height="744" extended-state="6" />
     <editor active="true" />
 =======
     <frame x="61" y="24" width="1305" height="744" extended-state="7" />
     <editor active="false" />
 >>>>>>> d9c46ec19d2f37416f8a26a0a4bb8ef41748d4fc
+>>>>>>> fa1e8d0c8fc27eeb20458618f99ab26101004b99
     <layout>
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -3372,8 +3377,8 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="43" column="36" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
+        <state relative-caret-position="206">
+          <caret line="36" column="31" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
           <folding>
 <<<<<<< HEAD
             <element signature="e#5885#5886#0" expanded="true" />

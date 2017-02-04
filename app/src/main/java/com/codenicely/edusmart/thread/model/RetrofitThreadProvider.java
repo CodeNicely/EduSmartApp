@@ -3,7 +3,9 @@ package com.codenicely.edusmart.thread.model;
 import com.codenicely.edusmart.helper.Urls;
 import com.codenicely.edusmart.thread.OnThreadCreated;
 import com.codenicely.edusmart.thread.OnThreadSuccess;
+import com.codenicely.edusmart.thread.api.CreateThreadApi;
 import com.codenicely.edusmart.thread.api.RequestThreadApi;
+import com.codenicely.edusmart.thread.model.data.CreateThreadData;
 import com.codenicely.edusmart.thread.model.data.ThreadData;
 
 import okhttp3.OkHttpClient;
@@ -63,8 +65,26 @@ public class RetrofitThreadProvider implements ThreadProvider {
     }
 
     @Override
-    public void createThread(String access_token, String thread_name, String description, int access_level, OnThreadCreated onThreadCreated) {
+    public void createThread(String access_token, String thread_name, String description, int access_level, final OnThreadCreated onThreadCreated) {
 
+        CreateThreadApi createThreadApi=retrofit.create(CreateThreadApi.class);
+        Call<CreateThreadData> createThreadDataCall=createThreadApi.createThread(access_token,
+                thread_name,
+                description,
+                access_level);
+
+        createThreadDataCall.enqueue(new Callback<CreateThreadData>() {
+            @Override
+            public void onResponse(Call<CreateThreadData> call, Response<CreateThreadData> response) {
+
+
+            }
+
+            @Override
+            public void onFailure(Call<CreateThreadData> call, Throwable t) {
+
+            }
+        });
 
 
     }
