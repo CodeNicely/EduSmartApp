@@ -23,16 +23,17 @@ public class RetrofitOtpVerifyHelper implements OtpVerifyHelperClass {
 
 
     @Override
-    public void getOtpResponse(final String otp, String roll_number,int login_type, final OtpVerificationCallback otpVerificationCallback) {
+    public void getOtpResponse(final String otp, String roll_number, int login_type, final OtpVerificationCallback otpVerificationCallback) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(Urls.BASE_URL).client(client).
-                addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(Urls.BASE_URL).
+//                client(client).
+        addConverterFactory(GsonConverterFactory.create()).build();
         final RequestOtpVerify requestOtpVerify = retrofit.create(RequestOtpVerify.class);
 
-        Call<OtpData> call = requestOtpVerify.getJson(otp, roll_number,login_type);
+        Call<OtpData> call = requestOtpVerify.getJson(otp, roll_number, login_type);
         call.enqueue(new Callback<OtpData>() {
             @Override
             public void onResponse(Call<OtpData> call, Response<OtpData> response) {

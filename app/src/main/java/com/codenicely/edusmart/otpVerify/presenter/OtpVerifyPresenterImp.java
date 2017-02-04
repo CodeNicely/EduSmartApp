@@ -22,9 +22,9 @@ public class OtpVerifyPresenterImp implements OtpVerifyPresenter {
     }
 
     @Override
-    public void otpData(String otp, String roll_number,int login_type ) {
+    public void otpData(String otp, String roll_number, int login_type) {
         otpView.showProgressBar(true);
-        otpVerifyHelperClass.getOtpResponse(otp, roll_number,login_type, new OtpVerificationCallback() {
+        otpVerifyHelperClass.getOtpResponse(otp, roll_number, login_type, new OtpVerificationCallback() {
             @Override
             public void onOtpVerified(OtpData otpData) {
 

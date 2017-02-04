@@ -12,7 +12,7 @@ import java.util.List;
  */
 class ViewPagerAdapter extends FragmentPagerAdapter {
 
-    final int TAB_COUNT = 5;
+    final int TAB_COUNT = 4;
     private String tabTitles[] = new String[]{"Syllabus", "Assignments", "Resources", "Anouncements"};
     private List<InformationFragment> informationFragmentList = new ArrayList<>();
 
