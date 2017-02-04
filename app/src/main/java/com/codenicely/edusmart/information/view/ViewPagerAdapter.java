@@ -13,7 +13,7 @@ import java.util.List;
 class ViewPagerAdapter extends FragmentPagerAdapter {
 
     final int TAB_COUNT = 4;
-    private String tabTitles[] = new String[]{"Syllabus", "Assignments", "Resources", "Anouncements"};
+    private String tabTitles[] = new String[]{"Syllabus", "Assignments", "Resources", "Announcements"};
     private List<InformationFragment> informationFragmentList = new ArrayList<>();
 
     public ViewPagerAdapter(FragmentManager manager) {

@@ -1,5 +1,12 @@
 package com.codenicely.edusmart.information.model;
 
+import com.codenicely.edusmart.helper.Urls;
+import com.codenicely.edusmart.information.OnInformationReceived;
+import com.codenicely.edusmart.information.api.InformationRequestApi;
+
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import com.codenicely.edusmart.R;
 import com.codenicely.edusmart.helper.MyApplication;
 import com.codenicely.edusmart.helper.Urls;
