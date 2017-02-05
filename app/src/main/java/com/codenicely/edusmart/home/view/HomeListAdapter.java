@@ -265,7 +265,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         @BindView(R.id.author)
         TextView resource_author;
         @BindView(R.id.card)
-        TextView resources_card;
+        CardView resources_card;
 
         public ResourcesViewHolder(View view) {
             super(view);
