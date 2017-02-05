@@ -17,10 +17,13 @@ import rx.Observable;
 
 public interface MessageProvider {
 
-    void requestMessage(String access_token, String thread_id, int last_message_id, OnMessageReceived onMessageReceived);
+    void requestMessage(String access_token, int thread_id, int last_message_id,
+                        OnMessageReceived onMessageReceived);
 
-    void sendMessage(String access_token, String message, OnMessageSent onMessageSent);
+    void sendMessage(String access_token, int thread_id, String message,
+                     OnMessageSent onMessageSent);
 
-    Observable<SendMessageData> sendImageMessage(String access_token, Uri imageUri) throws IOException;
+    Observable<SendMessageData> sendImageMessage(String access_token,
+                                                 Uri imageUri) throws IOException;
 
 }

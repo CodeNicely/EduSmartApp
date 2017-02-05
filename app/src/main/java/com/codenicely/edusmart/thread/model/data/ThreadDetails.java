@@ -8,37 +8,43 @@ public class ThreadDetails {
 
 
     private int thread_id;
-    private String thread_name;
-    private String thread_description;
+    private String title;
+    private String description;
     private String created;
-    private String updated;
+    private String author;
+    private int access_level;
 
-    public ThreadDetails(int thread_id, String thread_name, String thread_description, String created, String updated) {
+    public ThreadDetails(int thread_id, String title, String description, String created, String author, int access_level) {
         this.thread_id = thread_id;
-        this.thread_name = thread_name;
-        this.thread_description = thread_description;
+        this.title = title;
+        this.description = description;
         this.created = created;
-        this.updated = updated;
+        this.author = author;
+        this.access_level = access_level;
     }
 
     public int getThread_id() {
         return thread_id;
     }
 
-    public String getThread_name() {
-        return thread_name;
+    public String getTitle() {
+        return title;
     }
 
-    public String getThread_description() {
-        return thread_description;
+    public String getDescription() {
+        return description;
     }
 
     public String getCreated() {
         return created;
     }
 
-    public String getUpdated() {
-        return updated;
+    public String getAuthor() {
+        return author;
+    }
+
+    public int getAccess_level() {
+        return access_level;
     }
 }
 

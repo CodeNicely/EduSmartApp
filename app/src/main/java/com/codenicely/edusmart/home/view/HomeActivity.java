@@ -2,14 +2,10 @@ package com.codenicely.edusmart.home.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -25,6 +21,7 @@ import com.codenicely.edusmart.helper.SharedPrefs;
 import com.codenicely.edusmart.home.model.data.HomeListData;
 import com.codenicely.edusmart.login.view.LoginActivity;
 import com.codenicely.edusmart.spot_upload.view.UploadFragment;
+import com.codenicely.edusmart.thread.view.ThreadFragment;
 import com.codenicely.edusmart.welcome_screen.view.WelcomeActivity;
 
 import java.util.List;
@@ -47,7 +44,6 @@ public class HomeActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         sharedPrefs = new SharedPrefs(getApplicationContext());
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -103,17 +99,23 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
         if (id == R.id.nav_home) {
             // Handle the camera action
-            addFragment(new HomeFragment(),"HomeFragment");
+            addFragment(new HomeFragment(), "HomeFragment");
+            getSupportActionBar().hide();
+
         } else if (id == R.id.nav_notices) {
 
 //            addFragment(new UploadFragment(), "Upload");
-                sharedPrefs.setLogin(false);
+            sharedPrefs.setLogin(false);
             sharedPrefs.setTeacherLogin(false);
-            Intent intent=new Intent(HomeActivity.this,WelcomeActivity.class);
+            Intent intent = new Intent(HomeActivity.this, WelcomeActivity.class);
             startActivity(intent);
             finish();
-        } else if (id == R.id.nav_my_cart) {
+            getSupportActionBar().hide();
 
+        } else if (id == R.id.nav_threads) {
+
+            setFragment(new ThreadFragment(), "Thread Fragment");
+            getSupportActionBar().hide();
 
 
         } else if (id == R.id.nav_my_order) {

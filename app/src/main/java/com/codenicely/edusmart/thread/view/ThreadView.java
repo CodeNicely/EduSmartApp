@@ -16,4 +16,6 @@ public interface ThreadView {
     void showDialog(boolean show);
 
     void setData(ThreadData threadData);
+
+    void reloadThreads();
 }

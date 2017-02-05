@@ -1,7 +1,9 @@
 package com.codenicely.edusmart.thread.presenter;
 
+import com.codenicely.edusmart.thread.OnThreadCreated;
 import com.codenicely.edusmart.thread.OnThreadSuccess;
 import com.codenicely.edusmart.thread.model.ThreadProvider;
+import com.codenicely.edusmart.thread.model.data.CreateThreadData;
 import com.codenicely.edusmart.thread.model.data.ThreadData;
 import com.codenicely.edusmart.thread.view.ThreadView;
 
@@ -48,7 +50,26 @@ public class ThreadPresenterImpl implements ThreadPresenter {
     @Override
     public void createThread(String access_token, String thread_name, String description, int access_level) {
 
+        threadView.showDialog(true);
+        threadProvider.createThread(access_token, thread_name, description, access_level, new OnThreadCreated() {
+            @Override
+            public void onSuccess(CreateThreadData createThreadData) {
+                if (createThreadData.isSuccess()) {
+                    threadView.showMessage(createThreadData.getMessage());
+                    threadView.reloadThreads();
+                } else {
+                    threadView.showMessage(createThreadData.getMessage());
+                }
+                threadView.showDialog(false);
+            }
 
+            @Override
+            public void onFailed(String message) {
+
+                threadView.showDialog(false);
+                threadView.showMessage(message);
+            }
+        });
 
 
     }

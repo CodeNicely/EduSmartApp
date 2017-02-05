@@ -15,7 +15,7 @@ public interface RequestMessageApi {
 
     @GET(Urls.URL_REQUEST_MESSAGE)
     Call<MessageListData> requestMessage(@Query("access_token") String access_token,
-                                         @Query("fcm") String thread_id,
+                                         @Query("thread_id") int thread_id,
                                          @Query("last_message_id") int last_message_id);
 
 

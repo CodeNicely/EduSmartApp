@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         });
 
         if (getIntent() != null) {
-            login_type = getIntent().getIntExtra(Keys.KEY_LOGIN, 0);
+            login_type = getIntent().getExtras().getInt(Keys.KEY_LOGIN);
         }
 
         if (login_type == 0) {

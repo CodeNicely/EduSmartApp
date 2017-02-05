@@ -17,7 +17,9 @@ public interface MessageSendApi {
     @FormUrlEncoded
     @POST(Urls.SUB_URL_SEND_MESSAGE)
     Call<SendMessageData>
-    sendMessage(@Field("access_token") String access_token, @Field("message") String message);
+    sendMessage(@Field("access_token") String access_token,
+                @Field("thread_id") int thread_id,
+                @Field("message") String message);
 
 
 }

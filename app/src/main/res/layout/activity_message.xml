@@ -4,7 +4,12 @@
     android:orientation="vertical"
     android:weightSum="10">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <RelativeLayout
+        android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/messageLayout"
@@ -55,8 +60,8 @@
             android:layout_height="32dp"
             android:layout_alignParentRight="true"
             android:layout_margin="12dp"
-            android:background="@drawable/send_button"
             android:padding="12dp"
+            android:background="@drawable/send_button"
             android:src="@drawable/send_button"
 
             />

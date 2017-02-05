@@ -5,5 +5,5 @@ package com.codenicely.edusmart.home.presenter;
  */
 
 public interface HomeListPresenter {
-    void getHomeList(String access_token);
+    void getHomeList(String access_token,String fcm);
 }

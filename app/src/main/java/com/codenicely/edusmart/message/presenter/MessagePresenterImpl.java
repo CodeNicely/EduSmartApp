@@ -42,7 +42,7 @@ public class MessagePresenterImpl implements MessagePresenter {
     }
 
     @Override
-    public void requestMessages(String access_token, String thread_id, int last_message_id) {
+    public void requestMessages(String access_token, int thread_id, int last_message_id) {
 
 //        messageView.showLoader(true);
         messageProvider.requestMessage(access_token, thread_id, last_message_id, new OnMessageReceived() {
@@ -65,9 +65,9 @@ public class MessagePresenterImpl implements MessagePresenter {
     }
 
     @Override
-    public void sendMessage(String access_token, String message) {
+    public void sendMessage(String access_token,int thread_id, String message) {
 
-        messageProvider.sendMessage(access_token, message, new OnMessageSent() {
+        messageProvider.sendMessage(access_token,thread_id, message, new OnMessageSent() {
             @Override
             public void onSuccess(SendMessageData sendMessageData) {
 

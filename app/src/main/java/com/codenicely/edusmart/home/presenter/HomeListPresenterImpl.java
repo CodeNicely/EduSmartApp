@@ -19,9 +19,9 @@ public class HomeListPresenterImpl implements HomeListPresenter {
     }
 
     @Override
-    public void getHomeList(String access_token) {
+    public void getHomeList(String access_token,String fcm) {
         homeView.showProgressBar(true);
-        homeListProviderHelper.getHomeList(access_token, new HomeActivityListCallback() {
+        homeListProviderHelper.getHomeList(access_token, fcm,new HomeActivityListCallback() {
             @Override
             public void onSuccess(HomeListData homeListData) {
                 if(homeListData.isSuccess())

@@ -81,14 +81,12 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeView {
     public void login(View v) {
         if (v.getId() == R.id.button_login_teacher) {
             Intent i = new Intent(WelcomeActivity.this, LoginActivity.class);
-//            sharedPrefs.setLoginType(0);
-            i.putExtra(Keys.KEY_LOGIN,"0");
+            i.putExtra(Keys.KEY_LOGIN,0);
             startActivity(i);
             finish();
-        } else {
+        } else if(v.getId()==R.id.button_login_student){
             Intent i = new Intent(WelcomeActivity.this, LoginActivity.class);
-//            sharedPrefs.setLoginType(1);
-            i.putExtra(Keys.KEY_LOGIN,"1");
+            i.putExtra(Keys.KEY_LOGIN,1);
             startActivity(i);
             finish();
         }

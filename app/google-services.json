@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "353914452750",
+    "firebase_url": "https://edusmartapp-cb345.firebaseio.com",
+    "project_id": "edusmartapp-cb345",
+    "storage_bucket": "edusmartapp-cb345.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:353914452750:android:babdf17a75e8fa3d",
+        "android_client_info": {
+          "package_name": "com.codenicely.edusmart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "353914452750-tcf174gcmpn32vt0vnrplgq96lh66j5s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_hTSgZE6E52Rkwhq-T9vvuVmpAuZOO7U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -6,6 +6,7 @@ import com.codenicely.edusmart.home.api.HomeListApi;
 import com.codenicely.edusmart.home.model.data.HomeListData;
 
 import java.util.concurrent.TimeUnit;
+
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,8 +21,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitHomeListProvider implements HomeListProviderHelper {
     private HomeListApi homeListApi;
-    public RetrofitHomeListProvider()
-    {
+
+    public RetrofitHomeListProvider() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -30,12 +31,12 @@ public class RetrofitHomeListProvider implements HomeListProviderHelper {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
-        homeListApi=retrofit.create(HomeListApi.class);
+        homeListApi = retrofit.create(HomeListApi.class);
     }
 
     @Override
-    public void getHomeList(String access_token, final HomeActivityListCallback homeActivityListCallback) {
-        Call<HomeListData> call=homeListApi.getJson(access_token);
+    public void getHomeList(String access_token, String fcm, final HomeActivityListCallback homeActivityListCallback) {
+        Call<HomeListData> call = homeListApi.getJson(access_token, fcm);
         call.enqueue(new Callback<HomeListData>() {
             @Override
             public void onResponse(Call<HomeListData> call, Response<HomeListData> response) {

@@ -14,7 +14,8 @@ import retrofit2.http.Url;
 
 public interface HomeListApi {
     @GET(Urls.SUB_URL_HOME)
-    Call<HomeListData>getJson(@Query("access_token")String access_token);
+    Call<HomeListData> getJson(@Query("access_token") String access_token,
+                               @Query("fcm") String fcm);
 
 
 }

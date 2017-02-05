@@ -8,9 +8,9 @@ import android.net.Uri;
 
 public interface MessagePresenter {
 
-    void requestMessages(String access_token, String thread_id, int last_message_id);
+    void requestMessages(String access_token, int thread_id, int last_message_id);
 
-    void sendMessage(String access_token, String message);
+    void sendMessage(String access_token,int thread_id, String message);
 
     void openCamera();
 

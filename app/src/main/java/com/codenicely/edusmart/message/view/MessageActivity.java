@@ -92,16 +92,16 @@ public class MessageActivity extends Activity implements MessageView {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(messageAdapter);
         messagePresenter = new MessagePresenterImpl(this, new RetrofitMessageProvider(this));
-        messagePresenter.requestMessages(userId, MyApplication.getFcm(), -9999);
+//        messagePresenter.requestMessages(userId, MyApplication.getFcm(), -9999);
 //        getMessage();
-        send.setOnClickListener(new View.OnClickListener() {
+        /*send.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                messagePresenter.sendMessage(userId, message.getText().toString());
+            public void onClick(View v) {messagePresenter.sendMessage(userId, message.getText().toString());
                 message.setText("");
+
             }
         });
-
+*/
     }
 
     @Override
@@ -146,7 +146,7 @@ public class MessageActivity extends Activity implements MessageView {
     @Override
     public void getMessage() {
 
-        messagePresenter.requestMessages(userId, MyApplication.getFcm(), messageAdapter.getLastMessageId());
+//        messagePresenter.requestMessages(userId, MyApplication.getFcm(), messageAdapter.getLastMessageId());
     }
 
 

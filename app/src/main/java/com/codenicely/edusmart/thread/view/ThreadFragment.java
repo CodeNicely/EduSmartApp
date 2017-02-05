@@ -4,17 +4,30 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.codenicely.edusmart.R;
+import com.codenicely.edusmart.helper.SharedPrefs;
+import com.codenicely.edusmart.home.view.HomeActivity;
+import com.codenicely.edusmart.message.view.MessageFragment;
+import com.codenicely.edusmart.thread.model.RetrofitThreadProvider;
 import com.codenicely.edusmart.thread.model.data.ThreadData;
+import com.codenicely.edusmart.thread.presenter.ThreadPresenter;
+import com.codenicely.edusmart.thread.presenter.ThreadPresenterImpl;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,7 +40,7 @@ import butterknife.ButterKnife;
  * Use the {@link ThreadFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ThreadFragment extends Fragment implements ThreadView{
+public class ThreadFragment extends Fragment implements ThreadView {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -39,6 +52,8 @@ public class ThreadFragment extends Fragment implements ThreadView{
 
     private OnFragmentInteractionListener mListener;
 
+    private int access_level;
+
     public ThreadFragment() {
         // Required empty public constructor
     }
@@ -49,7 +64,16 @@ public class ThreadFragment extends Fragment implements ThreadView{
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
+    @BindView(R.id.add_thread)
+    FloatingActionButton add_thread;
+
     private ThreadAdapter threadAdapter;
+    private ThreadPresenter threadPresenter;
+    private SharedPrefs sharedPrefs;
+
+
+    private ProgressDialog progressDialog;
+    private AlertDialog alertDialog;
 
     /**
      * Use this factory method to create a new instance of
@@ -83,14 +107,78 @@ public class ThreadFragment extends Fragment implements ThreadView{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_thread, container, false);
-        ButterKnife.bind(view);
-        threadAdapter=new ThreadAdapter(getContext());
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
+        ButterKnife.bind(this, view);
+        threadAdapter = new ThreadAdapter(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),
+                LinearLayoutManager.VERTICAL, false);
 
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(threadAdapter);
 
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Creating Thread");
+        progressDialog.setMessage("Please Wait. . .");
 
+        add_thread.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                alertDialog = new AlertDialog.Builder(getContext()).create();
+                LayoutInflater layoutInflater = LayoutInflater.from(getContext());
+                final RadioGroup access_groups;
+                final EditText title;
+                final EditText description;
+                Button create_group;
+                final View alertLayout = layoutInflater.inflate(R.layout.add_thread_layout, new LinearLayout(getContext()));
+                alertDialog.setView(alertLayout);
+                alertDialog.setCancelable(true);
+                access_groups = (RadioGroup) alertLayout.findViewById(R.id.radio_group);
+                title = (EditText) alertLayout.findViewById(R.id.title);
+                description = (EditText) alertLayout.findViewById(R.id.description);
+                create_group = (Button) alertLayout.findViewById(R.id.create);
+                final RadioButton radioButton1 = (RadioButton) alertLayout.findViewById(R.id.access_level1);
+                RadioButton radioButton2 = (RadioButton) alertLayout.findViewById(R.id.access_level2);
+                RadioButton radioButton3 = (RadioButton) alertLayout.findViewById(R.id.access_level3);
+
+                access_groups.check(R.id.access_level1);
+
+                alertDialog.show();
+                access_groups.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                        switch (checkedId) {
+                            case R.id.access_level1:
+                                access_level = 0;
+                                break;
+                            case R.id.access_level2:
+                                access_level = 1;
+                                break;
+                            case R.id.access_level3:
+                                access_level = 2;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                });
+                create_group.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+                        threadPresenter.createThread(sharedPrefs.getAccessToken(),
+                                title.getText().toString(),
+                                description.getText().toString(), access_level);
+
+                    }
+                });
+            }
+        });
+
+        threadPresenter = new ThreadPresenterImpl(this, new RetrofitThreadProvider());
+        sharedPrefs = new SharedPrefs(getContext());
+        threadPresenter.requestThreads(sharedPrefs.getAccessToken());
 
         return view;
     }
@@ -105,12 +193,6 @@ public class ThreadFragment extends Fragment implements ThreadView{
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
     }
 
     @Override
@@ -129,13 +211,12 @@ public class ThreadFragment extends Fragment implements ThreadView{
     @Override
     public void showLoader(boolean show) {
 
-        if(show){
+        if (show) {
             progressBar.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
-        }else{
+        } else {
             progressBar.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
-
         }
 
     }
@@ -143,21 +224,35 @@ public class ThreadFragment extends Fragment implements ThreadView{
     @Override
     public void showDialog(boolean show) {
 
-        ProgressDialog progressDialog=new ProgressDialog(getContext());
-        progressDialog.setTitle("Creating Thread");
-        progressDialog.setMessage("Please Wait. . .");
-        progressDialog.show();
+        if (show) {
+            progressDialog.show();
+        } else {
+            alertDialog.dismiss();
+            progressDialog.dismiss();
+
+        }
 
     }
 
     @Override
     public void setData(ThreadData threadData) {
 
-
-        threadAdapter.setData(threadData.getThreadDetailsList());
+        threadAdapter.setData(threadData.getData_list());
         threadAdapter.notifyDataSetChanged();
 
     }
+
+    @Override
+    public void reloadThreads() {
+        threadPresenter.requestThreads(sharedPrefs.getAccessToken());
+    }
+
+    public void openThread(int thread_id) {
+
+        ((HomeActivity) getActivity()).setFragment(new MessageFragment(),"MessageFragment");
+
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated

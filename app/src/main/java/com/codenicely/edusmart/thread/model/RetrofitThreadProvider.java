@@ -25,7 +25,7 @@ public class RetrofitThreadProvider implements ThreadProvider {
 
     private Retrofit retrofit;
 
-    RetrofitThreadProvider() {
+    public RetrofitThreadProvider() {
 
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();

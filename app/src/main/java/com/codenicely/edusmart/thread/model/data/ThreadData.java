@@ -10,12 +10,12 @@ public class ThreadData {
 
     private boolean success;
     private String message;
-    private List<ThreadDetails> threadDetailsList;
+    private List<ThreadDetails> data_list;
 
-    public ThreadData(boolean success, String message, List<ThreadDetails> threadDetailsList) {
+    public ThreadData(boolean success, String message, List<ThreadDetails> data_list) {
         this.success = success;
         this.message = message;
-        this.threadDetailsList = threadDetailsList;
+        this.data_list = data_list;
     }
 
     public boolean isSuccess() {
@@ -26,7 +26,7 @@ public class ThreadData {
         return message;
     }
 
-    public List<ThreadDetails> getThreadDetailsList() {
-        return threadDetailsList;
+    public List<ThreadDetails> getData_list() {
+        return data_list;
     }
 }

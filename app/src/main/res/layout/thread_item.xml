@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/thread_card"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:padding="4dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -16,26 +19,31 @@
             <TextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_large" />
 
             <TextView
-                android:gravity="center"
                 android:id="@+id/description"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center" />
 
             <TextView
-                android:layout_gravity="center"
                 android:id="@+id/created"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:gravity="left" />
 
             <TextView
 
-                android:gravity="center"
-                android:id="@+id/modified"
+                android:id="@+id/author"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:gravity="right" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 

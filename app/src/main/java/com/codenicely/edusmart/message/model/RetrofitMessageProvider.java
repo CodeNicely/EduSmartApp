@@ -39,16 +39,17 @@ public class RetrofitMessageProvider implements MessageProvider {
 
     private Retrofit retrofit;
     private Context context;
-    public RetrofitMessageProvider(Context context){
-        this.context=context;
+
+    public RetrofitMessageProvider(Context context) {
+        this.context = context;
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor)
                 .build();
 
-         retrofit = new Retrofit.Builder()
+        retrofit = new Retrofit.Builder()
                 .baseUrl(Urls.BASE_URL)
-                .client(client)
+//                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -56,12 +57,12 @@ public class RetrofitMessageProvider implements MessageProvider {
     }
 
     @Override
-    public void requestMessage(String access_token, String thread_id,int last_message_id, final OnMessageReceived onMessageReceived) {
+    public void requestMessage(String access_token, int thread_id, int last_message_id, final OnMessageReceived onMessageReceived) {
 
         RequestMessageApi requestMessageApi;
-        requestMessageApi=retrofit.create(RequestMessageApi.class);
+        requestMessageApi = retrofit.create(RequestMessageApi.class);
 
-        Call<MessageListData> messageListDataCall=requestMessageApi.requestMessage(access_token,thread_id,last_message_id);
+        Call<MessageListData> messageListDataCall = requestMessageApi.requestMessage(access_token, thread_id, last_message_id);
         messageListDataCall.enqueue(new Callback<MessageListData>() {
             @Override
             public void onResponse(Call<MessageListData> call, Response<MessageListData> response) {
@@ -79,10 +80,10 @@ public class RetrofitMessageProvider implements MessageProvider {
     }
 
     @Override
-    public void sendMessage(String access_token, String message , final OnMessageSent onMessageSent) {
+    public void sendMessage(String access_token, int thread_id, String message, final OnMessageSent onMessageSent) {
 
-        MessageSendApi messageSendApi=retrofit.create(MessageSendApi.class);
-        Call<SendMessageData> sendMessageDataCall=messageSendApi.sendMessage(access_token,message);
+        MessageSendApi messageSendApi = retrofit.create(MessageSendApi.class);
+        Call<SendMessageData> sendMessageDataCall = messageSendApi.sendMessage(access_token, thread_id, message);
         sendMessageDataCall.enqueue(new Callback<SendMessageData>() {
             @Override
             public void onResponse(Call<SendMessageData> call, Response<SendMessageData> response) {
@@ -99,11 +100,10 @@ public class RetrofitMessageProvider implements MessageProvider {
     }
 
 
-
     @Override
     public Observable<SendMessageData> sendImageMessage(String access_token, Uri imageUri) throws IOException {
 
-        ImageSendApi imageSendApi=retrofit.create(ImageSendApi.class);
+        ImageSendApi imageSendApi = retrofit.create(ImageSendApi.class);
 
         RequestBody access_token1 =
                 RequestBody.create(
@@ -115,9 +115,9 @@ public class RetrofitMessageProvider implements MessageProvider {
                         MediaType.parse("multipart/form-data"), Keys.MESSAGE_TYPE_IMAGE);
 
 
-        if(imageUri!=null) {
+        if (imageUri != null) {
             //    File imageFile=new File(imageUri.getPath());
-            File imageFile= FileUtils.BitmapToFileConverter(context, BitmapUtils.filePathToBitmapConverter(UriUtils.uriToFilePathConverter(context, imageUri)));
+            File imageFile = FileUtils.BitmapToFileConverter(context, BitmapUtils.filePathToBitmapConverter(UriUtils.uriToFilePathConverter(context, imageUri)));
             RequestBody fbody = RequestBody.create(MediaType.parse("multipart/form-data"), imageFile);
 
             MultipartBody.Part image =

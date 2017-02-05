@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.codenicely.edusmart.R;
+import com.codenicely.edusmart.helper.MyApplication;
 import com.codenicely.edusmart.helper.SharedPrefs;
 import com.codenicely.edusmart.home.model.HomeListProviderHelper;
 import com.codenicely.edusmart.home.model.RetrofitHomeListProvider;
@@ -98,7 +99,6 @@ public class HomeFragment extends Fragment implements HomeView {
         ((HomeActivity) getActivity()).getSupportActionBar().show();
         initialise();
         return view;
-
     }
 
     private void initialise() {
@@ -109,7 +109,7 @@ public class HomeFragment extends Fragment implements HomeView {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(homeListAdapter);
 
-        homeListPresenter.getHomeList(sharedPrefs.getAccessToken());
+        homeListPresenter.getHomeList(sharedPrefs.getAccessToken(), MyApplication.getFcm());
     }
 
     // TODO: Rename method, update argument and hook method into UI event

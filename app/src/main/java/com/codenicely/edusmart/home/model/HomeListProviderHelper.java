@@ -7,5 +7,5 @@ import com.codenicely.edusmart.home.HomeActivityListCallback;
  */
 
 public interface HomeListProviderHelper {
-    void getHomeList(String access_token, HomeActivityListCallback homeActivityListCallback);
+    void getHomeList(String access_token,String fcm, HomeActivityListCallback homeActivityListCallback);
 }

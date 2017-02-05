@@ -91,13 +91,22 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemCount() {
-        return messageDataList.size();
+
+        if (messageDataList.size() == 0) {
+            return 0;
+        } else {
+            return messageDataList.size();
+        }
     }
 
     public int getLastMessageId() {
 
-        return messageDataList.get(messageDataList.size() - 1).getMessage_id();
+        if (messageDataList.size() == 0) {
+            return 0;
+        } else {
 
+            return messageDataList.get(messageDataList.size() - 1).getMessage_id();
+        }
     }
 
     public class OwnerViewHolder extends RecyclerView.ViewHolder {
