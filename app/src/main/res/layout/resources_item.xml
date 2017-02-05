@@ -1,56 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:id="@+id/card"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <android.support.v7.widget.CardView
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/card_margin_small"
+    android:padding="4dp"
+    app:cardCornerRadius="@dimen/card_radius_medium"
+    app:contentPadding="@dimen/card_padding_medium">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/card_margin_medium"
-        android:padding="4dp"
-        android:id="@+id/resources_card"
-        app:cardCornerRadius="@dimen/card_radius_medium"
-        app:contentPadding="@dimen/card_padding_medium">
-        <LinearLayout
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
+
+            <View
+                android:layout_centerInParent="true"
+                android:layout_width="2dp"
+                android:background="@color/colorAccent"
+                android:layout_height="match_parent"/>
             <ImageView
+                android:layout_centerInParent="true"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/resource_logo"
-                android:padding="24dp"/>
+                android:src="@drawable/resources" />
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <TextView
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="blshdish"
                 android:layout_gravity="center"
-                android:id="@+id/resource_title"/>
+                android:padding="18dp"
+                android:text="Title"
+                android:textStyle="bold" />
+
             <TextView
+                android:id="@+id/description"
                 android:layout_width="wrap_content"
-                android:text="fsdfdzx"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="10dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/resource_description" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="bdagsd"
-                android:id="@+id/resource_timestamp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/resource_author"
-                android:padding="10dp"
-                android:text="mdfsdf"/>
+                android:padding="14dp"
+                android:text="This is a a Description"
+                android:textColor="#424242" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:id="@+id/author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:gravity="left"
+                    android:padding="12dp"
+                    android:text="Author Name" />
+
+                <TextView
+                    android:id="@+id/timestamp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:gravity="right"
+                    android:padding="12dp"
+                    android:text="TimeStamp" />
+
+            </LinearLayout>
+
         </LinearLayout>
+    </LinearLayout>
 
+</android.support.v7.widget.CardView>
 
-
-    </android.support.v7.widget.CardView>
-
-</LinearLayout>

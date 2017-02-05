@@ -13,8 +13,13 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.codenicely.edusmart.R;
+import com.codenicely.edusmart.helper.Keys;
+import com.codenicely.edusmart.helper.SharedPrefs;
 import com.codenicely.edusmart.home.model.data.HomeListData;
 import com.codenicely.edusmart.home.view.HomeListAdapter;
+import com.codenicely.edusmart.information.model.RetrofitInformationProvider;
+import com.codenicely.edusmart.information.presenter.InformationPresenter;
+import com.codenicely.edusmart.information.presenter.InformationPresenterImpl;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,12 +40,14 @@ public class InformationFragment extends Fragment implements InformationView {
     private static final String ARG_PARAM3 = "param3";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private int mParam1;
+    private int mParam2;
     private int mParam3;
     private int position;
-
+    private InformationPresenter informationPresenter;
     private OnFragmentInteractionListener mListener;
+
+    private int subject_id;
 
 
     @BindView(R.id.recyclerView)
@@ -50,6 +57,7 @@ public class InformationFragment extends Fragment implements InformationView {
     ProgressBar progressBar;
 
     private HomeListAdapter homeListAdapter;
+    private SharedPrefs sharedPrefs;
 
     public InformationFragment() {
         // Required empty public constructor
@@ -64,11 +72,13 @@ public class InformationFragment extends Fragment implements InformationView {
      * @return A new instance of fragment InformationFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static InformationFragment newInstance(String param1, String param2) {
+
+
+    public static InformationFragment newInstance(int param1, int param2) {
         InformationFragment fragment = new InformationFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putInt(ARG_PARAM1, param1);
+        args.putInt(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -86,10 +96,12 @@ public class InformationFragment extends Fragment implements InformationView {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam1 = getArguments().getInt(ARG_PARAM1);
+            mParam2 = getArguments().getInt(ARG_PARAM2);
             mParam3 = getArguments().getInt(ARG_PARAM3);
         }
+
+
     }
 
     @Override
@@ -97,12 +109,30 @@ public class InformationFragment extends Fragment implements InformationView {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_information, container, false);
-        ButterKnife.bind(view);
+
+
+        int type = -9999;
+        if (mParam1 == 0) {
+            type = 6;
+        } else if (mParam1 == 1) {
+            type = 2;
+
+        } else if (mParam1 == 2) {
+            type = 5;
+        } else if (mParam1 == 3) {
+            type = 3;
+        }
+        ButterKnife.bind(this,view);
 
         homeListAdapter = new HomeListAdapter(getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(homeListAdapter);
+
+        sharedPrefs = new SharedPrefs(getContext());
+        informationPresenter = new InformationPresenterImpl(this, new RetrofitInformationProvider());
+        informationPresenter.requestInformation(sharedPrefs.getAccessToken(), mParam2, type);
+
         return view;
     }
 
@@ -116,12 +146,12 @@ public class InformationFragment extends Fragment implements InformationView {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
+/*        if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
-        }
+        }*/
     }
 
     @Override

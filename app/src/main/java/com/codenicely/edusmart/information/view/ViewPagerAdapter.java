@@ -15,10 +15,14 @@ class ViewPagerAdapter extends FragmentPagerAdapter {
     final int TAB_COUNT = 4;
     private String tabTitles[] = new String[]{"Syllabus", "Assignments", "Resources", "Announcements"};
     private List<InformationFragment> informationFragmentList = new ArrayList<>();
+    private int subject_id;
 
-    public ViewPagerAdapter(FragmentManager manager) {
+
+    public ViewPagerAdapter(int subject_id, FragmentManager manager) {
         super(manager);
+        this.subject_id = subject_id;
     }
+
 
     @Override
     public int getCount() {
@@ -27,9 +31,11 @@ class ViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        informationFragmentList.add(position, InformationFragment.newInstance(position));
+
+        informationFragmentList.add(position, InformationFragment.newInstance(position,subject_id));
         return informationFragmentList.get(position);
     }
+
     @Override
     public CharSequence getPageTitle(int position) {
         return tabTitles[position];

@@ -46,6 +46,7 @@ public class RetrofitHomeListProvider implements HomeListProviderHelper {
             @Override
             public void onFailure(Call<HomeListData> call, Throwable t) {
                 homeActivityListCallback.onFailure();
+                t.printStackTrace();
             }
         });
     }

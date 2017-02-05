@@ -16,6 +16,6 @@ public interface InformationRequestApi {
 
     @GET(Urls.SUB_URL_DATA)
     Call<HomeListData> getJson(@Query("access_token") String access_token,
-                               @Query("subject_id")String subject_id,
+                               @Query("subject_id")int subject_id,
                                @Query("type") int type);
 }

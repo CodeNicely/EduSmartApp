@@ -19,4 +19,6 @@
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="font_size_large">24dp</dimen>
+    <dimen name="card_margin_small">1dp</dimen>
+    <dimen name="card_margin_extra_large">12dp</dimen>
 </resources>

@@ -96,7 +96,7 @@ public class HomeFragment extends Fragment implements HomeView {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
         sharedPrefs = new SharedPrefs(getContext());
-        ((HomeActivity) getActivity()).getSupportActionBar().show();
+        ((HomeActivity) getActivity()).getSupportActionBar().hide();
         initialise();
         return view;
     }

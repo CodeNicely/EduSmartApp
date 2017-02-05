@@ -1,7 +1,7 @@
 package com.codenicely.edusmart.home.view;
 
 import android.content.Context;
-import android.support.v4.app.NotificationCompatSideChannelService;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,19 +11,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.codenicely.edusmart.R;
+import com.codenicely.edusmart.helper.Keys;
 import com.codenicely.edusmart.home.model.data.HomeListDataDetails;
-
-import org.w3c.dom.Text;
+import com.codenicely.edusmart.information.view.InformationTabs;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 
 /**
  * Created by ramya on 4/2/17.
@@ -106,17 +103,16 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             ResourcesViewHolder resourcesViewHolder = (ResourcesViewHolder) holder;
             resourcesViewHolder.resource_title.setText(homeListDataDetails.getTitle());
             resourcesViewHolder.resource_description.setText(homeListDataDetails.getDescription());
-            resourcesViewHolder.resource_author.setText(homeListDataDetails.getTeacher_name());
+            resourcesViewHolder.resource_author.setText(homeListDataDetails.getAuthor());
             resourcesViewHolder.resource_timestamp.setText(homeListDataDetails.getTimestamp());
             resourcesViewHolder.resource_logo.setImageResource(R.drawable.ic_subject_purple_600_24dp);
             resourcesViewHolder.resources_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(context instanceof HomeActivity)
-                    {
+                    if (context instanceof HomeActivity) {
                         ((HomeActivity) context).showDetails(homeListDataDetails.getFile_url(),
-                                homeListDataDetails.getDeadline(),homeListDataDetails.getDescription()
-                                ,homeListDataDetails.getTimestamp(),homeListDataDetails.getTitle(),
+                                homeListDataDetails.getDeadline(), homeListDataDetails.getDescription()
+                                , homeListDataDetails.getTimestamp(), homeListDataDetails.getTitle(),
                                 homeListDataDetails.getFile_type());
                         Log.d("CATEGORY ID", Integer.toString(homeListDataDetails.getCard_type()));
                     }
@@ -127,9 +123,22 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             NoticeViewHolder noticeViewHolder = (NoticeViewHolder) holder;
             noticeViewHolder.notice_title.setText(homeListDataDetails.getTitle());
             noticeViewHolder.notice_description.setText(homeListDataDetails.getDescription());
-            noticeViewHolder.notice_author.setText(homeListDataDetails.getTeacher_name());
-            noticeViewHolder.notice_timestamp.setText(homeListDataDetails.getTimestamp());
-            noticeViewHolder.notice_logo.setImageResource(R.drawable.ic_subject_purple_600_24dp);
+
+            if (homeListDataDetails.getAuthor() != null) {
+                noticeViewHolder.notice_author.setText(homeListDataDetails.getAuthor());
+                noticeViewHolder.notice_author.setVisibility(View.VISIBLE);
+
+            } else {
+                noticeViewHolder.notice_author.setVisibility(View.GONE);
+            }
+
+            if (homeListDataDetails.getTimestamp() != null) {
+                noticeViewHolder.notice_timestamp.setText(homeListDataDetails.getTimestamp());
+                noticeViewHolder.notice_timestamp.setVisibility(View.VISIBLE);
+            } else {
+                noticeViewHolder.notice_timestamp.setVisibility(View.GONE);
+
+            }
             noticeViewHolder.notice_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -141,9 +150,8 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             AssignmentsViewHolder assignmentsViewHolder = (AssignmentsViewHolder) holder;
             assignmentsViewHolder.assignment_title.setText(homeListDataDetails.getTitle());
             assignmentsViewHolder.assignment_description.setText(homeListDataDetails.getDescription());
-            assignmentsViewHolder.assignment_author.setText(homeListDataDetails.getTeacher_name());
+            assignmentsViewHolder.assignment_author.setText(homeListDataDetails.getAuthor());
             assignmentsViewHolder.assignment_timestamp.setText(homeListDataDetails.getTimestamp());
-            assignmentsViewHolder.assignment_logo.setImageResource(R.drawable.ic_subject_purple_600_24dp);
             assignmentsViewHolder.assignments_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -153,15 +161,22 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         } else if (homeListDataDetails.getCard_type() == CARD_TYPE_SUBJECT) {
             SubjectViewHolder subjectViewHolder = (SubjectViewHolder) holder;
-            subjectViewHolder.subject_title.setText(homeListDataDetails.getSubject_name());
+            subjectViewHolder.subject_title.setText(homeListDataDetails.getTitle());
             subjectViewHolder.subject_description.setText(homeListDataDetails.getDescription());
-            subjectViewHolder.subject_author.setText(homeListDataDetails.getTeacher_name());
-            subjectViewHolder.student_count.setText(homeListDataDetails.getCount());
+            subjectViewHolder.subject_author.setText(homeListDataDetails.getAuthor());
+//            subjectViewHolder.student_count.setText(homeListDataDetails.getCount());
             subjectViewHolder.subject_timestamp.setText(homeListDataDetails.getTimestamp());
             subjectViewHolder.subject_logo.setImageResource(R.drawable.ic_subject_purple_600_24dp);
             subjectViewHolder.subject_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    InformationTabs informationTabs = new InformationTabs();
+                    Bundle args = new Bundle();
+                    args.putInt(Keys.KEY_SUBJECT_ID, homeListDataDetails.getId());
+                    informationTabs.setArguments(args);
+                    ((HomeActivity) context).addFragment(informationTabs, "InformationFragment");
+
 
                 }
             });
@@ -171,9 +186,8 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             AnnouncementsViewHolder announcementsViewHolder = (AnnouncementsViewHolder) holder;
             announcementsViewHolder.announcement_title.setText(homeListDataDetails.getTitle());
             announcementsViewHolder.announcement_description.setText(homeListDataDetails.getDescription());
-            announcementsViewHolder.announcing_author.setText(homeListDataDetails.getTeacher_name());
+            announcementsViewHolder.announcing_author.setText(homeListDataDetails.getAuthor());
             announcementsViewHolder.announcement_timestamp.setText(homeListDataDetails.getTimestamp());
-            announcementsViewHolder.announcement_logo.setImageResource(R.drawable.ic_subject_purple_600_24dp);
             announcementsViewHolder.announcements_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -189,7 +203,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
-        Log.d(TAG, "Items Received" + String.valueOf(homeListDataDetailsList.size()));
+//        Log.d(TAG, "Items Received" + String.valueOf(homeListDataDetailsList.size()));
         return homeListDataDetailsList.size();
 
     }
@@ -201,17 +215,17 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
     public class NoticeViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.notice_logo)
-        ImageView notice_logo;
-        @BindView(R.id.notice_title)
+        @BindView(R.id.title)
         TextView notice_title;
-        @BindView(R.id.notice_author)
+
+        @BindView(R.id.author)
         TextView notice_author;
-        @BindView(R.id.notice_description)
+
+        @BindView(R.id.description)
         TextView notice_description;
-        @BindView(R.id.notice_timestamp)
+        @BindView(R.id.timestamp)
         TextView notice_timestamp;
-        @BindView(R.id.notice_card)
+        @BindView(R.id.card)
         CardView notice_card;
 
         public NoticeViewHolder(View view) {
@@ -222,17 +236,17 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public class AnnouncementsViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.announcement_logo)
+        @BindView(R.id.logo)
         ImageView announcement_logo;
-        @BindView(R.id.announcement_title)
+        @BindView(R.id.title)
         TextView announcement_title;
-        @BindView(R.id.announcement_description)
+        @BindView(R.id.description)
         TextView announcement_description;
-        @BindView(R.id.announcing_author)
+        @BindView(R.id.author)
         TextView announcing_author;
-        @BindView(R.id.announcement_timestamp)
+        @BindView(R.id.timestamp)
         TextView announcement_timestamp;
-        @BindView(R.id.announcement_card)
+        @BindView(R.id.card)
         CardView announcements_card;
 
         public AnnouncementsViewHolder(View view) {
@@ -243,17 +257,17 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public class ResourcesViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.resource_logo)
+        @BindView(R.id.logo)
         ImageView resource_logo;
-        @BindView(R.id.resource_title)
+        @BindView(R.id.title)
         TextView resource_title;
-        @BindView(R.id.resource_description)
+        @BindView(R.id.description)
         TextView resource_description;
-        @BindView(R.id.resource_timestamp)
+        @BindView(R.id.timestamp)
         TextView resource_timestamp;
-        @BindView(R.id.resource_author)
+        @BindView(R.id.author)
         TextView resource_author;
-        @BindView(R.id.resources_card)
+        @BindView(R.id.card)
         TextView resources_card;
 
         public ResourcesViewHolder(View view) {
@@ -274,18 +288,19 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public class AssignmentsViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.assignment_logo)
+        @BindView(R.id.logo)
         ImageView assignment_logo;
-        @BindView(R.id.assignmenta_title)
+        @BindView(R.id.title)
         TextView assignment_title;
-        @BindView(R.id.assignment_description)
+        @BindView(R.id.description)
         TextView assignment_description;
-        @BindView(R.id.assignment_timestamp)
+        @BindView(R.id.timestamp)
         TextView assignment_timestamp;
-        @BindView(R.id.assignment_author)
+        @BindView(R.id.author)
         TextView assignment_author;
-        @BindView(R.id.assignments_card)
+        @BindView(R.id.card)
         CardView assignments_card;
+
         public AssignmentsViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);

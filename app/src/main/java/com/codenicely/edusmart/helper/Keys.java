@@ -13,4 +13,5 @@ public class Keys {
     public static final String KEY_LOGIN_MESSAGE ="login_message" ;
     public static final String MESSAGE_TYPE_IMAGE = "1";
     public static final String KEY_THREAD_ID = "thread_id";
+    public static final String KEY_SUBJECT_ID = "subject_id;";
 }

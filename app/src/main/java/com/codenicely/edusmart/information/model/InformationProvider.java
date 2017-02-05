@@ -8,7 +8,7 @@ import com.codenicely.edusmart.information.OnInformationReceived;
 
 public interface InformationProvider {
 
-    void requestInformation(String access_token, String subject_id, int type,
+    void requestInformation(String access_token, int subject_id, int type,
                             OnInformationReceived onInformationReceived);
 
 }

@@ -30,7 +30,7 @@ public class RetrofitInformationProvider implements InformationProvider {
 
     private InformationRequestApi informationRequestApi;
 
-    RetrofitInformationProvider() {
+    public RetrofitInformationProvider() {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -45,7 +45,7 @@ public class RetrofitInformationProvider implements InformationProvider {
     }
 
     @Override
-    public void requestInformation(String access_token, String subject_id, int type, final OnInformationReceived onInformationReceived) {
+    public void requestInformation(String access_token, int subject_id, int type, final OnInformationReceived onInformationReceived) {
 
         Call<HomeListData> homeListDataCall = informationRequestApi.getJson(access_token, subject_id, type);
         homeListDataCall.enqueue(new Callback<HomeListData>() {

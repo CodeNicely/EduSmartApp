@@ -23,7 +23,7 @@ public class InformationPresenterImpl implements InformationPresenter {
 
 
     @Override
-    public void requestInformation(String access_token, String subject_id, int type) {
+    public void requestInformation(String access_token, int subject_id, int type) {
         informationView.showLoader(true);
         informationProvider.requestInformation(access_token, subject_id, type, new OnInformationReceived() {
             @Override

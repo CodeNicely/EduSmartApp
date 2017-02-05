@@ -5,6 +5,7 @@ package com.codenicely.edusmart.home.model.data;
  */
 
 public class HomeListDataDetails {
+    private int id;
     private String title;
     private String description;
     private int file_type;
@@ -12,11 +13,13 @@ public class HomeListDataDetails {
     private String file_url;
     private String timestamp;
     private int card_type;
-    private String teacher_name;
-    private String subject_name;
+    private String author;
     private int count;
 
-    public HomeListDataDetails(String title, String description, int file_type, String deadline, String file_url, String timestamp, int card_type, String teacher_name, String subject_name, int count) {
+
+    public HomeListDataDetails(int id, String title, String description, int file_type,
+                               String deadline, String file_url, String timestamp, int card_type, String author, int count) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.file_type = file_type;
@@ -24,9 +27,12 @@ public class HomeListDataDetails {
         this.file_url = file_url;
         this.timestamp = timestamp;
         this.card_type = card_type;
-        this.teacher_name = teacher_name;
-        this.subject_name = subject_name;
+        this.author = author;
         this.count = count;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -57,12 +63,8 @@ public class HomeListDataDetails {
         return card_type;
     }
 
-    public String getTeacher_name() {
-        return teacher_name;
-    }
-
-    public String getSubject_name() {
-        return subject_name;
+    public String getAuthor() {
+        return author;
     }
 
     public int getCount() {

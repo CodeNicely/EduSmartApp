@@ -127,7 +127,7 @@ public class MessageFragment extends Fragment implements MessageView {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_message, container, false);
 
-        sharedPrefs=new SharedPrefs(getContext());
+        sharedPrefs = new SharedPrefs(getContext());
         thread_id = getArguments().getInt(Keys.KEY_THREAD_ID);
 
 
