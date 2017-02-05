@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.codenicely.edusmart.R;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,8 +43,6 @@ public class ItemDetailsFragment extends Fragment {
     TextView details_timestamp;
     @BindView(R.id.file_type_icon)
     ImageView file_type_icon;
-    @BindView(R.id.file_download)
-    Button file_download;
     private String deadline;
     private String description;
     private String timestamp;
@@ -94,14 +94,21 @@ public class ItemDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_item_details_fragement, container, false);
-        Bundle bundle = this.getArguments();
-        deadline=bundle.getString("deadline");
-        description=bundle.getString("description");
-        timestamp=bundle.getString("timestamp");
-        file_url=bundle.getString("file_url");
-        title=bundle.getString("title");
-        file_type=bundle.getInt("file_type");
-        if(file_type==0)
+        ButterKnife.bind(this,view);
+        Button download_file=(Button) view.findViewById(R.id.file_download);
+        download_file.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+        deadline=getArguments().getString("deadline");
+        description=getArguments().getString("description");
+        timestamp=getArguments().getString("timestamp");
+        file_url=getArguments().getString("file_url");
+        title=getArguments().getString("title");
+        file_type=getArguments().getInt("file_type");
+
+         if(file_type==0)
         {
             file_type_icon.setImageResource(R.drawable.ic_add_a_photo_light_blue_700_24dp);
         }
@@ -121,19 +128,9 @@ public class ItemDetailsFragment extends Fragment {
         {
             file_type_icon.setImageResource(R.drawable.ic_add_a_photo_light_blue_700_24dp);
         }
-        file_download.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent("url",Uri.parse(file_url));
-                try {
-                    getActivity().startActivity(intent);
-                } catch (ActivityNotFoundException ex) {
-                    Toast.makeText(getContext(),"File Not Found",Toast.LENGTH_LONG);
-                }
-            }
-        });
         return view;
     }
+
 
 
 
@@ -144,16 +141,6 @@ public class ItemDetailsFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
 
     @Override
     public void onDetach() {

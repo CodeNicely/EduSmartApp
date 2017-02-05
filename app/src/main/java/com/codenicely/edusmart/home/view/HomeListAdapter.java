@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.codenicely.edusmart.R;
+import com.codenicely.edusmart.details.ItemDetailsFragment;
 import com.codenicely.edusmart.helper.Keys;
 import com.codenicely.edusmart.home.model.data.HomeListDataDetails;
 import com.codenicely.edusmart.information.view.InformationTabs;
@@ -108,13 +109,15 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             resourcesViewHolder.resources_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (context instanceof HomeActivity) {
-                        ((HomeActivity) context).showDetails(homeListDataDetails.getFile_url(),
-                                homeListDataDetails.getDeadline(), homeListDataDetails.getDescription()
-                                , homeListDataDetails.getTimestamp(), homeListDataDetails.getTitle(),
-                                homeListDataDetails.getFile_type());
-                        Log.d("CATEGORY ID", Integer.toString(homeListDataDetails.getCard_type()));
-                    }
+                    ItemDetailsFragment itemDetailsFragment= new ItemDetailsFragment();
+                    Bundle args= new Bundle();
+                    args.putString("deadline",homeListDataDetails.getDeadline());
+                    args.putString("file_url",homeListDataDetails.getFile_url());
+                    args.putString("description",homeListDataDetails.getDescription());
+                    args.putString("timestamp",homeListDataDetails.getTimestamp());
+                    args.putInt("file_type",homeListDataDetails.getFile_type());
+                    itemDetailsFragment.setArguments(args);
+                    ((HomeActivity)context).addFragment(itemDetailsFragment,"Item Details Fragment");
                 }
             });
 
@@ -141,13 +144,15 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             noticeViewHolder.notice_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (context instanceof HomeActivity) {
-                        ((HomeActivity) context).showDetails(homeListDataDetails.getFile_url(),
-                                homeListDataDetails.getDeadline(), homeListDataDetails.getDescription()
-                                , homeListDataDetails.getTimestamp(), homeListDataDetails.getTitle(),
-                                homeListDataDetails.getFile_type());
-                        Log.d("CATEGORY ID", Integer.toString(homeListDataDetails.getCard_type()));
-                    }
+                    ItemDetailsFragment itemDetailsFragment= new ItemDetailsFragment();
+                    Bundle args= new Bundle();
+                    args.putString("deadline",homeListDataDetails.getDeadline());
+                    args.putString("file_url",homeListDataDetails.getFile_url());
+                    args.putString("description",homeListDataDetails.getDescription());
+                    args.putString("timestamp",homeListDataDetails.getTimestamp());
+                    args.putInt("file_type",homeListDataDetails.getFile_type());
+                    itemDetailsFragment.setArguments(args);
+                    ((HomeActivity)context).addFragment(itemDetailsFragment,"Item Details Fragment");
 
                 }
             });
@@ -161,14 +166,15 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             assignmentsViewHolder.assignments_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (context instanceof HomeActivity) {
-                        ((HomeActivity) context).showDetails(homeListDataDetails.getFile_url(),
-                                homeListDataDetails.getDeadline(), homeListDataDetails.getDescription()
-                                , homeListDataDetails.getTimestamp(), homeListDataDetails.getTitle(),
-                                homeListDataDetails.getFile_type());
-                        Log.d("CATEGORY ID", Integer.toString(homeListDataDetails.getCard_type()));
-                    }
-
+                    ItemDetailsFragment itemDetailsFragment= new ItemDetailsFragment();
+                    Bundle args= new Bundle();
+                    args.putString("deadline",homeListDataDetails.getDeadline());
+                    args.putString("file_url",homeListDataDetails.getFile_url());
+                    args.putString("description",homeListDataDetails.getDescription());
+                    args.putString("timestamp",homeListDataDetails.getTimestamp());
+                    args.putInt("file_type",homeListDataDetails.getFile_type());
+                    itemDetailsFragment.setArguments(args);
+                    ((HomeActivity)context).addFragment(itemDetailsFragment,"Item Details Fragment");
                 }
             });
 
@@ -177,7 +183,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             subjectViewHolder.subject_title.setText(homeListDataDetails.getTitle());
             subjectViewHolder.subject_description.setText(homeListDataDetails.getDescription());
             subjectViewHolder.subject_author.setText(homeListDataDetails.getAuthor());
-//            subjectViewHolder.student_count.setText(homeListDataDetails.getCount());
+//           // subjectViewHolder.student_count.setText(homeListDataDetails.getCount());
             subjectViewHolder.subject_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -202,13 +208,16 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             announcementsViewHolder.announcements_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (context instanceof HomeActivity) {
-                        ((HomeActivity) context).showDetails(homeListDataDetails.getFile_url(),
-                                homeListDataDetails.getDeadline(), homeListDataDetails.getDescription()
-                                , homeListDataDetails.getTimestamp(), homeListDataDetails.getTitle(),
-                                homeListDataDetails.getFile_type());
-                        Log.d("CATEGORY ID", Integer.toString(homeListDataDetails.getCard_type()));
-                    }
+                    ItemDetailsFragment itemDetailsFragment= new ItemDetailsFragment();
+                    Bundle args= new Bundle();
+                    args.putString("deadline",homeListDataDetails.getDeadline());
+                    args.putString("file_url",homeListDataDetails.getFile_url());
+                    args.putString("description",homeListDataDetails.getDescription());
+                    args.putString("timestamp",homeListDataDetails.getTimestamp());
+                    args.putInt("file_type",homeListDataDetails.getFile_type());
+                    itemDetailsFragment.setArguments(args);
+                    ((HomeActivity)context).addFragment(itemDetailsFragment,"Item Details Fragment");
+
                 }
             });
 

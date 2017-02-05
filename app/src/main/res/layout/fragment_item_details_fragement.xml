@@ -24,12 +24,15 @@
                     android:id="@+id/details_title"
                     android:layout_gravity="center"
                     android:text="ndhff"
+                    android:textStyle="bold"
                     android:padding="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/details_description"
                     android:text="asgfua"
+                    android:textColor=""
+                    android:layout_gravity="center"
                     android:padding="10dp"
                     />
                 <LinearLayout
@@ -66,8 +69,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/file_type_icon"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:padding="30dp"/>
+                        android:padding="10dp"/>
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -75,7 +79,6 @@
                         style="@style/Widget.AppCompat.Button.Colored"
                         android:padding="10dp"
                         android:layout_weight="1"
-                        android:onClick="download"
                         android:id="@+id/file_download" />
                 </LinearLayout>
 
