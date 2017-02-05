@@ -163,9 +163,8 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             subjectViewHolder.subject_title.setText(homeListDataDetails.getTitle());
             subjectViewHolder.subject_description.setText(homeListDataDetails.getDescription());
             subjectViewHolder.subject_author.setText(homeListDataDetails.getAuthor());
-//            subjectViewHolder.student_count.setText(homeListDataDetails.getCount());
+            subjectViewHolder.student_count.setText(homeListDataDetails.getCount());
             subjectViewHolder.subject_timestamp.setText(homeListDataDetails.getTimestamp());
-            subjectViewHolder.subject_logo.setImageResource(R.drawable.ic_subject_purple_600_24dp);
             subjectViewHolder.subject_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -306,19 +305,17 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public class SubjectViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.subject_logo)
-        ImageView subject_logo;
-        @BindView(R.id.subject_title)
+        @BindView(R.id.title)
         TextView subject_title;
-        @BindView(R.id.subject_description)
+        @BindView(R.id.description)
         TextView subject_description;
-        @BindView(R.id.faculty_name)
+        @BindView(R.id.author)
         TextView subject_author;
-        @BindView(R.id.student_count)
+        @BindView(R.id.count)
         TextView student_count;
-        @BindView(R.id.subject_timestamp)
+        @BindView(R.id.timestamp)
         TextView subject_timestamp;
-        @BindView(R.id.subject_card)
+        @BindView(R.id.card)
         CardView subject_card;
 
         public SubjectViewHolder(View view) {

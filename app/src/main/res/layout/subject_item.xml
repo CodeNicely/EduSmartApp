@@ -73,13 +73,13 @@
                     android:text="Author Name" />
 
                 <TextView
-                    android:id="@+id/timestamp"
+                    android:id="@+id/count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="5"
                     android:gravity="right"
                     android:padding="12dp"
-                    android:text="TimeStamp" />
+                    android:text="No of Students" />
 
             </LinearLayout>
 

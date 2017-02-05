@@ -11,6 +11,8 @@
         android:title="Home"
         app:titleTextColor="@color/white"
         app:title="Home"
+        android:navigationIcon="@style/DrawerArrowStyle"
+        app:navigationIcon="@style/DrawerArrowStyle"
         />
 
     <android.support.v7.widget.RecyclerView
