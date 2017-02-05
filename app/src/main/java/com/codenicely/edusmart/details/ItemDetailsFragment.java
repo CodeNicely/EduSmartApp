@@ -1,13 +1,18 @@
 package com.codenicely.edusmart.details;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.codenicely.edusmart.R;
 
@@ -34,6 +39,18 @@ public class ItemDetailsFragment extends Fragment {
     TextView details_deadline;
     @BindView(R.id.details_timestamp)
     TextView details_timestamp;
+    @BindView(R.id.file_type_icon)
+    ImageView file_type_icon;
+    @BindView(R.id.file_download)
+    Button file_download;
+    private String deadline;
+    private String description;
+    private String timestamp;
+    private String title;
+    private String file_url;
+    private int file_type;
+
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -76,8 +93,49 @@ public class ItemDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_item_details_fragement, container, false);
+        View view=inflater.inflate(R.layout.fragment_item_details_fragement, container, false);
+        Bundle bundle = this.getArguments();
+        deadline=bundle.getString("deadline");
+        description=bundle.getString("description");
+        timestamp=bundle.getString("timestamp");
+        file_url=bundle.getString("file_url");
+        title=bundle.getString("title");
+        file_type=bundle.getInt("file_type");
+        if(file_type==0)
+        {
+            file_type_icon.setImageResource(R.drawable.ic_add_a_photo_light_blue_700_24dp);
+        }
+        else if(file_type==1)
+        {
+            file_type_icon.setImageResource(R.drawable.ic_subject_purple_600_24dp);
+        }
+        else if(file_type==2)
+        {
+            file_type_icon.setImageResource(R.drawable.ic_menu_gallery);
+        }
+        else if(file_type==3)
+        {
+            file_type_icon.setImageResource(R.drawable.ic_menu_slideshow);
+        }
+        else
+        {
+            file_type_icon.setImageResource(R.drawable.ic_add_a_photo_light_blue_700_24dp);
+        }
+        file_download.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent("url",Uri.parse(file_url));
+                try {
+                    getActivity().startActivity(intent);
+                } catch (ActivityNotFoundException ex) {
+                    Toast.makeText(getContext(),"File Not Found",Toast.LENGTH_LONG);
+                }
+            }
+        });
+        return view;
     }
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
