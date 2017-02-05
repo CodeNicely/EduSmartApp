@@ -104,7 +104,7 @@ public class HomeActivity extends AppCompatActivity
             addFragment(new HomeFragment(), "HomeFragment");
             getSupportActionBar().hide();
 
-        } else if (id == R.id.nav_notices) {
+        } else if (id == R.id.nav_logout) {
 
 //            addFragment(new UploadFragment(), "Upload");
             sharedPrefs.setLogin(false);
@@ -118,13 +118,6 @@ public class HomeActivity extends AppCompatActivity
 
             setFragment(new ThreadFragment(), "Thread Fragment");
             getSupportActionBar().hide();
-
-
-        } else if (id == R.id.nav_my_order) {
-
-        } else if (id == R.id.nav_about_us) {
-
-        } else if (id == R.id.nav_call_us) {
 
 
         }
@@ -161,12 +154,12 @@ public class HomeActivity extends AppCompatActivity
     protected void showDetails(String file_url, String deadline, String description, String timestamp,
                                String title, int file_type) {
         Bundle bundle = new Bundle();
-        bundle.putString("file_url",file_url);
-        bundle.putString("deadline",deadline);
-        bundle.putString("description",description);
-        bundle.putString("timestamp",timestamp);
-        bundle.putString("title",title);
-        bundle.putInt("file_type",file_type);
+        bundle.putString("file_url", file_url);
+        bundle.putString("deadline", deadline);
+        bundle.putString("description", description);
+        bundle.putString("timestamp", timestamp);
+        bundle.putString("title", title);
+        bundle.putInt("file_type", file_type);
         ItemDetailsFragment itemDetailsFragment = new ItemDetailsFragment();
         itemDetailsFragment.setArguments(bundle);
         addFragment(itemDetailsFragment, "Item Details Fragement");

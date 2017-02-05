@@ -105,7 +105,6 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             resourcesViewHolder.resource_description.setText(homeListDataDetails.getDescription());
             resourcesViewHolder.resource_author.setText(homeListDataDetails.getAuthor());
             resourcesViewHolder.resource_timestamp.setText(homeListDataDetails.getTimestamp());
-            resourcesViewHolder.resource_logo.setImageResource(R.drawable.ic_subject_purple_600_24dp);
             resourcesViewHolder.resources_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -257,8 +256,6 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public class ResourcesViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.logo)
-        ImageView resource_logo;
         @BindView(R.id.title)
         TextView resource_title;
         @BindView(R.id.description)

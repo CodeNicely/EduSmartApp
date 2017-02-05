@@ -5,31 +5,13 @@
         <item
             android:id="@+id/nav_home"
             android:title="@string/nav_item_home" />
-        <!--            <item
-                        android:id="@+id/nav_address"
-                        android:icon="@drawable/ic_menu_camera"
-                        android:title="@string/nav_item_address" />-->
-        <!--        <item
-                    android:id="@+id/nav_my_cart"
-                    android:icon="@drawable/ic_menu_camera"
-                    android:title="@string/nav_item_my_cart" />-->
-        <item
-            android:id="@+id/nav_notices"
-            android:title="@string/nav_item_notices" />
 
-        <item
-            android:id="@+id/nav_announcement"
-            android:title="@string/nav_item_announcement" />
-
-        <item
-            android:id="@+id/nav_assignments"
-            android:title="@string/nav_item_assignments" />
-        <item
-            android:id="@+id/nav_resources"
-            android:title="@string/nav_resources" />
         <item
             android:id="@+id/nav_threads"
             android:title="@string/nav_item_threads" />
+        <item
+            android:id="@+id/nav_logout"
+            android:title="@string/nav_item_logout" />
     </group>
 
 </menu>

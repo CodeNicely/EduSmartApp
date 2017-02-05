@@ -94,13 +94,13 @@ public class ThreadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         @BindView(R.id.description)
         TextView description;
 
-        @BindView(R.id.created)
+        @BindView(R.id.timestamp)
         TextView created;
 
         @BindView(R.id.author)
         TextView author;
 
-        @BindView(R.id.thread_card)
+        @BindView(R.id.card)
         CardView threadCard;
 
         public ThreadViewHolder(View view) {

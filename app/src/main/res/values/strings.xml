@@ -40,4 +40,5 @@
     <string name="nav_resources">Resources</string>
     <string name="nav_item_threads">Discussion Threads</string>
     <string name="create_thread">Create Thread</string>
+    <string name="discussion_thread">Discussion Threads</string>
 </resources>
