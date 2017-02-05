@@ -17,6 +17,8 @@ import android.view.MenuItem;
 import android.widget.ProgressBar;
 
 import com.codenicely.edusmart.R;
+import com.codenicely.edusmart.details.ItemDetailsFragment;
+import com.codenicely.edusmart.helper.Keys;
 import com.codenicely.edusmart.helper.SharedPrefs;
 import com.codenicely.edusmart.home.model.data.HomeListData;
 import com.codenicely.edusmart.login.view.LoginActivity;
@@ -156,4 +158,17 @@ public class HomeActivity extends AppCompatActivity
 
     }
 
+    protected void showDetails(String file_url, String deadline, String description, String timestamp,
+                               String title, int file_type) {
+        Bundle bundle = new Bundle();
+        bundle.putString("file_url",file_url);
+        bundle.putString("deadline",deadline);
+        bundle.putString("description",description);
+        bundle.putString("timestamp",timestamp);
+        bundle.putString("title",title);
+        bundle.putInt("file_type",file_type);
+        ItemDetailsFragment itemDetailsFragment = new ItemDetailsFragment();
+        itemDetailsFragment.setArguments(bundle);
+        addFragment(itemDetailsFragment, "Item Details Fragement");
+    }
 }

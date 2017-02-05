@@ -6,7 +6,7 @@ package com.codenicely.edusmart.helper;
 
 public class Urls {
     public static final String SUB_URL_SPLASH_SCREEN = "splash_screen/";
-    public static final String BASE_URL = "http://192.168.43.240:8888";
+    public static final String BASE_URL = "http://192.168.43.240:8888/";
     public static final String SUB_URL_WELCOME = "/welcome/";
     public static final String SUB_URL_LOGIN = "/login/";
     public static final String SUB_URL_HOME = "/home/";
