@@ -141,6 +141,13 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             noticeViewHolder.notice_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if (context instanceof HomeActivity) {
+                        ((HomeActivity) context).showDetails(homeListDataDetails.getFile_url(),
+                                homeListDataDetails.getDeadline(), homeListDataDetails.getDescription()
+                                , homeListDataDetails.getTimestamp(), homeListDataDetails.getTitle(),
+                                homeListDataDetails.getFile_type());
+                        Log.d("CATEGORY ID", Integer.toString(homeListDataDetails.getCard_type()));
+                    }
 
                 }
             });
@@ -154,6 +161,13 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             assignmentsViewHolder.assignments_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if (context instanceof HomeActivity) {
+                        ((HomeActivity) context).showDetails(homeListDataDetails.getFile_url(),
+                                homeListDataDetails.getDeadline(), homeListDataDetails.getDescription()
+                                , homeListDataDetails.getTimestamp(), homeListDataDetails.getTitle(),
+                                homeListDataDetails.getFile_type());
+                        Log.d("CATEGORY ID", Integer.toString(homeListDataDetails.getCard_type()));
+                    }
 
                 }
             });
@@ -189,9 +203,16 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             announcementsViewHolder.announcements_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    if (context instanceof HomeActivity) {
+                        ((HomeActivity) context).showDetails(homeListDataDetails.getFile_url(),
+                                homeListDataDetails.getDeadline(), homeListDataDetails.getDescription()
+                                , homeListDataDetails.getTimestamp(), homeListDataDetails.getTitle(),
+                                homeListDataDetails.getFile_type());
+                        Log.d("CATEGORY ID", Integer.toString(homeListDataDetails.getCard_type()));
+                    }
                 }
             });
+
 
         } else {
             EmptyViewHolder emptyViewHolder = (EmptyViewHolder) holder;

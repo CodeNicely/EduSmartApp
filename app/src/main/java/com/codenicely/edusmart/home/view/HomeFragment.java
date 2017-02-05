@@ -49,6 +49,7 @@ public class HomeFragment extends Fragment implements HomeView {
 
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
+    
 
     private HomeListPresenter homeListPresenter;
     private HomeListProviderHelper homeListProviderHelper;
