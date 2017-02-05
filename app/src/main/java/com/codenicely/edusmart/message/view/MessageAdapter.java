@@ -5,9 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.codenicely.edusmart.R;
+import com.codenicely.edusmart.helper.image_loader.GlideImageLoader;
+import com.codenicely.edusmart.helper.image_loader.ImageLoader;
 import com.codenicely.edusmart.message.model.data.MessageData;
 
 import java.util.ArrayList;
@@ -27,10 +31,13 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private Context context;
     private LayoutInflater layoutInflater;
     private List<MessageData> messageDataList = new ArrayList<>();
+    private ImageLoader imageLoader;
 
     MessageAdapter(Context context) {
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
+        imageLoader=new GlideImageLoader(context);
+
     }
 
     void updateList(List<MessageData> messageDataList) {
@@ -63,9 +70,9 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         MessageData messageData = messageDataList.get(position);
         if (holder.getItemViewType() == VIEW_TYPE_OWNER) {
             OwnerViewHolder ownerViewHolder = (OwnerViewHolder) holder;
-
             ownerViewHolder.message.setText(messageData.getBody());
             ownerViewHolder.timestamp.setText(messageData.getCreated());
+            imageLoader.loadImage(messageData.getImage(),ownerViewHolder.imageView,new ProgressBar(context));
 
 
         } else {
@@ -73,6 +80,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             otherViewHolder.message.setText(messageData.getBody());
             otherViewHolder.timestamp.setText(messageData.getCreated());
             otherViewHolder.senderName.setText(messageData.getUser_id());
+            imageLoader.loadImage(messageData.getImage(),otherViewHolder.imageView,new ProgressBar(context));
+
         }
 
     }
@@ -118,6 +127,9 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         @BindView(R.id.timestamp)
         TextView timestamp;
 
+        @BindView(R.id.image)
+        ImageView imageView;
+
         public OwnerViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -136,6 +148,9 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         @BindView(R.id.sender_name)
         TextView senderName;
+
+        @BindView(R.id.image)
+        ImageView imageView;
 
         public OtherViewHolder(View itemView) {
             super(itemView);
