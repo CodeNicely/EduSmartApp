@@ -177,8 +177,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             subjectViewHolder.subject_title.setText(homeListDataDetails.getTitle());
             subjectViewHolder.subject_description.setText(homeListDataDetails.getDescription());
             subjectViewHolder.subject_author.setText(homeListDataDetails.getAuthor());
-            subjectViewHolder.student_count.setText(homeListDataDetails.getCount());
-            subjectViewHolder.subject_timestamp.setText(homeListDataDetails.getTimestamp());
+//            subjectViewHolder.student_count.setText(homeListDataDetails.getCount());
             subjectViewHolder.subject_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -334,8 +333,6 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         TextView subject_author;
         @BindView(R.id.count)
         TextView student_count;
-        @BindView(R.id.timestamp)
-        TextView subject_timestamp;
         @BindView(R.id.card)
         CardView subject_card;
 
